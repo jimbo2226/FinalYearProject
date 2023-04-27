@@ -72,7 +72,7 @@ public class Main extends javax.swing.JFrame {
         btnClearData = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,7 +90,15 @@ public class Main extends javax.swing.JFrame {
             new String [] {
                 "Meal", "Food", "Calories", "Date"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -133,10 +141,10 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnEditActionPerformed(evt);
             }
         });
 
@@ -180,7 +188,7 @@ public class Main extends javax.swing.JFrame {
                         .addComponent(btnExit))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(96, 96, 96)
-                        .addComponent(jButton1)))
+                        .addComponent(btnEdit)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
@@ -211,7 +219,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(btnClearData)
                     .addComponent(btnExit))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnEdit)
                 .addGap(29, 29, 29))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -262,7 +270,7 @@ public class Main extends javax.swing.JFrame {
         try {
 
             pst = con.prepareStatement(sql);
-          //  pst.setString(1, txtID.getText());
+            //  pst.setString(1, txtID.getText());
             pst.setString(1, txtMeal.getText());
             pst.setString(2, txtFood.getText());
             pst.setString(3, txtCalories.getText());
@@ -275,20 +283,45 @@ public class Main extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, e);
         }
-       // DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        // DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         //model.setRowCount(0);
         updateTable();
     }//GEN-LAST:event_btnAddDataActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+
+
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String sql = "update CalorieTrack set MealName= ?,Food= ?,Calories= ?,User= ? where id= ?";
+        
+
+        try {
+            
+            pst = con.prepareStatement(sql);
+            //  pst.setString(1, txtID.getText());
+            pst.setString(1, txtMeal.getText());
+            pst.setString(2, txtFood.getText());
+            pst.setString(3, txtCalories.getText());
+            pst.setString(4, txtDate.getText());
+            pst.setString(5, LoggedInUser);
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "System Update Completed");
+            rs.close();
+            pst.close();
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+        }
+        // DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        //model.setRowCount(0);
+        updateTable();
+
+    }//GEN-LAST:event_btnEditActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int selectedIndex = jTable1.getSelectedRow();
-        
-        txtMeal.setText(model.getValueAt(selectedIndex, 0).toString()); 
+
+        txtMeal.setText(model.getValueAt(selectedIndex, 0).toString());
         txtFood.setText(model.getValueAt(selectedIndex, 1).toString());
         txtCalories.setText(model.getValueAt(selectedIndex, 2).toString());
         //txtDate.setText(model.getValueAt(selectedIndex, 3).toString());
@@ -301,7 +334,7 @@ public class Main extends javax.swing.JFrame {
         con = com.mycompany.betteru.betteru.DbConnection.ConnectionDB();
         if (con != null) {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-           model.setRowCount(0);
+            model.setRowCount(0);
             String sql = "Select MealName, Food, Calories, Date from CalorieTrack WHERE User = '" + LoggedInUser + "'";
             System.out.println(sql);
             try {
@@ -314,7 +347,7 @@ public class Main extends javax.swing.JFrame {
                     columnData[0] = rs.getString("MealName");
                     columnData[1] = rs.getString("Food");
                     columnData[2] = rs.getInt("Calories");
-                   // columnData[4] = rs.getDate("Date");
+                    // columnData[4] = rs.getDate("Date");
                     model.addRow(columnData);
 
                 }
@@ -328,9 +361,9 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddData;
     private javax.swing.JButton btnClearData;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnPrint;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
