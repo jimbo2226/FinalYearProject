@@ -39,7 +39,7 @@ public class Main extends javax.swing.JFrame {
         con = DbConnection.ConnectionDB();
         // conn = Main.ConnectDb();
 
-        Object col[] = {"id", "MealName", "Food", "Calories", "Date"};
+        Object col[] = {"MealName", "Food", "Calories", "Date"};
         model.setColumnIdentifiers(col);
         jTable1.setModel(model);
 
@@ -58,8 +58,6 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
         btnAddData = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -77,8 +75,6 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("ID");
-
         btnAddData.setText("Add Data");
         btnAddData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,7 +87,7 @@ public class Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Meal", "Food", "Calories", "Date"
+                "Meal", "Food", "Calories", "Date"
             }
         ));
         jScrollPane3.setViewportView(jTable1);
@@ -166,15 +162,9 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(txtFood)))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(22, 22, 22)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtDate))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(26, 26, 26)
-                                    .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))))))
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtDate))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
@@ -182,11 +172,7 @@ public class Main extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(80, 80, 80)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMeal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -253,17 +239,17 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnAddDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDataActionPerformed
-        String sql = "INSERT into CalorieTrack(id, MealName, Food, Calories, Date, User)VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT into CalorieTrack(MealName, Food, Calories, Date, User)VALUES(?,?,?,?,?)";
 
         try {
 
             pst = con.prepareStatement(sql);
-            pst.setString(1, txtID.getText());
-            pst.setString(2, txtMeal.getText());
-            pst.setString(3, txtFood.getText());
-            pst.setString(4, txtCalories.getText());
-            pst.setString(5, txtDate.getText());
-            pst.setString(6, LoggedInUser);
+          //  pst.setString(1, txtID.getText());
+            pst.setString(1, txtMeal.getText());
+            pst.setString(2, txtFood.getText());
+            pst.setString(3, txtCalories.getText());
+            pst.setString(4, txtDate.getText());
+            pst.setString(5, LoggedInUser);
             pst.execute();
             JOptionPane.showMessageDialog(null, "System Update Completed");
             rs.close();
@@ -284,7 +270,7 @@ public class Main extends javax.swing.JFrame {
         if (con != null) {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
            model.setRowCount(0);
-            String sql = "Select id, MealName, Food, Calories, Date from CalorieTrack WHERE User = '" + LoggedInUser + "'";
+            String sql = "Select MealName, Food, Calories, Date from CalorieTrack WHERE User = '" + LoggedInUser + "'";
             System.out.println(sql);
             try {
                 pst = con.prepareStatement(sql);
@@ -292,11 +278,11 @@ public class Main extends javax.swing.JFrame {
                 Object[] columnData = new Object[5];
 
                 while (rs.next()) {
-                    columnData[0] = rs.getInt("id");
-                    columnData[1] = rs.getString("MealName");
-                    columnData[2] = rs.getString("Food");
-                    columnData[3] = rs.getInt("Calories");
-                    //columnData[4] = rs.getTimestamp("Date");
+                   // columnData[0] = rs.getInt("id");
+                    columnData[0] = rs.getString("MealName");
+                    columnData[1] = rs.getString("Food");
+                    columnData[2] = rs.getInt("Calories");
+                   // columnData[4] = rs.getDate("Date");
                     model.addRow(columnData);
 
                 }
@@ -312,7 +298,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btnClearData;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnPrint;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -322,7 +307,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField txtCalories;
     private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtFood;
-    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtMeal;
     // End of variables declaration//GEN-END:variables
 }
