@@ -213,7 +213,6 @@ public class CalculatorBMI extends javax.swing.JFrame {
 
             classificationLabel.setText("Classification: " + classification);
         } catch (NumberFormatException ex) {
-            // Handle the error if the user inputs are not valid numbers or are out of range
             JOptionPane.showMessageDialog(this, "Please enter valid input for weight, height, and age.", "Error", JOptionPane.ERROR_MESSAGE);
         }
 
