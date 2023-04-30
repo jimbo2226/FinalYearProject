@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author James
  */
-public class Main extends javax.swing.JFrame {
+public class CalorieTracker extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
@@ -34,7 +34,7 @@ public class Main extends javax.swing.JFrame {
     DefaultTableModel model = new DefaultTableModel();
     String LoggedInUser = null;
 
-    public Main(String User) {
+    public CalorieTracker(String User) {
         initComponents();
         con = DbConnection.ConnectionDB();
         // conn = Main.ConnectDb();
@@ -77,7 +77,7 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setText("Meal");
+        jLabel2.setText("Meal:");
 
         jLabel3.setText("Food");
 
