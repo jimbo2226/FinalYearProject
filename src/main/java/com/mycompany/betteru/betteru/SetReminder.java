@@ -15,21 +15,21 @@ import javax.swing.JOptionPane;
  *
  * @author James
  */
-public class Reminder extends javax.swing.JFrame {
-    private String task;
-    private LocalDateTime dateTime;
+public class SetReminder extends javax.swing.JFrame {
+
+    private static String task;
+    private static LocalDateTime dateTime;
     private Timer timer;
+
     /**
      * Creates new form Reminder
      */
-    public Reminder(String task, LocalDateTime dateTime) {
-                this.task = task;
+    public SetReminder(String task, LocalDateTime dateTime) {
+        this.task = task;
         this.dateTime = dateTime;
         this.timer = new Timer();
         initComponents();
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,38 +105,32 @@ public class Reminder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-    String task = taskField.getText();
-    String dateTimeString = dateTimeField.getText();
+        String task = taskField.getText();
+        String dateTimeString = dateTimeField.getText();
 
-    if (task.isEmpty() || dateTimeString.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Task and date-time fields cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-    
-    try {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, formatter);
-
-        if (dateTime.isBefore(LocalDateTime.now())) {
-            JOptionPane.showMessageDialog(this, "Reminder date-time must be in the future.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (task.isEmpty() || dateTimeString.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Task and date-time fields cannot be empty.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        Reminder reminder = new Reminder(task, dateTime);
-        reminder.schedule();
-        
-        taskField.setText("");
-        dateTimeField.setText("");
-        JOptionPane.showMessageDialog(this, "Reminder created for task '" + task + "' at " + dateTimeString, "Success", JOptionPane.INFORMATION_MESSAGE);
-    } catch (DateTimeParseException e) {
-        JOptionPane.showMessageDialog(this, "Invalid date-time format. Please enter in yyyy-MM-dd HH:mm format.", "Error", JOptionPane.ERROR_MESSAGE);
-    }
+
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime dateTime = LocalDateTime.parse(dateTimeString, formatter);
+
+            SetReminder reminder = new SetReminder(task, dateTime);
+            reminder.schedule();
+
+            taskField.setText("");
+            dateTimeField.setText("");
+            JOptionPane.showMessageDialog(this, "Reminder created for task '" + task + "' at " + dateTimeString, "Success", JOptionPane.INFORMATION_MESSAGE);
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(this, "Invalid date-time format. Please enter in yyyy-MM-dd HH:mm format.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_startButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField dateTimeField;
@@ -146,16 +140,49 @@ public class Reminder extends javax.swing.JFrame {
     private javax.swing.JTextField taskField;
     // End of variables declaration//GEN-END:variables
 
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(CalorieCalculator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(CalorieCalculator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(CalorieCalculator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CalorieCalculator.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SetReminder(task, dateTime).setVisible(true);
+            }
+        });
+    }
+
     private void schedule() {
-                TimerTask task = new TimerTask() {
+        TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("Reminder: " + Reminder.this.task);
-                Reminder.this.timer.cancel();
+                JOptionPane.showMessageDialog(SetReminder.this, "Reminder: " + SetReminder.this.task);
+                SetReminder.this.timer.cancel();
             }
         };
         long delay = java.time.Duration.between(LocalDateTime.now(), dateTime).toMillis();
         this.timer.schedule(task, delay);
-    
+
     }
 }
