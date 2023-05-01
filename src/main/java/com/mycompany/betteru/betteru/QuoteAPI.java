@@ -134,11 +134,8 @@ public class QuoteAPI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainMenu().setVisible(true);
-            }
-        });
+
+                dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

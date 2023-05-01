@@ -51,7 +51,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Weight: (kg)");
 
@@ -240,11 +240,9 @@ public class CalculatorBMI extends javax.swing.JFrame {
     }//GEN-LAST:event_ageTextFieldActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainMenu().setVisible(true);
-            }
-        });
+
+                dispose();
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
