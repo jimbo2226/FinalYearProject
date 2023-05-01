@@ -55,6 +55,11 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         openCalorieTracker.setText("Calorie Tracker");
+        openCalorieTracker.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openCalorieTrackerActionPerformed(evt);
+            }
+        });
 
         openRandomQuote.setText("Random Quote");
         openRandomQuote.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +153,10 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });      
     }//GEN-LAST:event_openReminderActionPerformed
+
+    private void openCalorieTrackerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openCalorieTrackerActionPerformed
+        
+    }//GEN-LAST:event_openCalorieTrackerActionPerformed
 
     /**
      * @param args the command line arguments
