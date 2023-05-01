@@ -4,6 +4,11 @@
  */
 package com.mycompany.betteru.betteru;
 
+import static com.mycompany.betteru.betteru.SetReminder.dateTime;
+import static com.mycompany.betteru.betteru.SetReminder.task;
+
+
+
 /**
  *
  * @author James
@@ -137,7 +142,11 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_openRandomQuoteActionPerformed
 
     private void openReminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openReminderActionPerformed
-      
+    java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SetReminder(task, dateTime).setVisible(true);
+            }
+        });      
     }//GEN-LAST:event_openReminderActionPerformed
 
     /**

@@ -22,9 +22,9 @@ import java.util.Date;
  */
 public class SetReminder extends javax.swing.JFrame {
 
-    private static String task;
-    private static LocalDateTime dateTime;
-    private Timer timer;
+    static String task;
+     static LocalDateTime dateTime;
+     Timer timer;
 
     /**
      * Creates new form Reminder

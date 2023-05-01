@@ -348,6 +348,8 @@ public class CalorieTracker extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+    
     public void updateTable() {
         con = com.mycompany.betteru.betteru.DbConnection.ConnectionDB();
         if (con != null) {
