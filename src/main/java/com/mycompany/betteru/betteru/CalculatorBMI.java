@@ -16,16 +16,13 @@ import javax.swing.JOptionPane;
  */
 public class CalculatorBMI extends javax.swing.JFrame {
 
-
     /**
      * Creates new form NewJFrame
      */
     public CalculatorBMI() {
         initComponents();
-        
+
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,12 +49,13 @@ public class CalculatorBMI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         idealWeightLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Weight (kg)");
+        jLabel1.setText("Weight: (kg)");
 
-        jLabel2.setText("Height (cm)");
+        jLabel2.setText("Height: (cm)");
 
         jButton1.setText("Calculate");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -70,66 +68,79 @@ public class CalculatorBMI extends javax.swing.JFrame {
 
         bmiLabel.setText("jLabel4");
 
-        jLabel4.setText("WHO classificarion");
+        jLabel4.setText("WHO Classification:");
 
         classificationLabel.setText("jLabel5");
 
-        jLabel5.setText("Age");
+        jLabel5.setText("Age:");
 
-        jLabel6.setText("Gender");
+        jLabel6.setText("Gender:");
 
         genderComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
 
-        jLabel7.setText("Ideal Weight");
+        ageTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ageTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Ideal Weight:");
 
         idealWeightLabel.setText("jLabel8");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("BMI Calculator");
 
+        jButton2.setText("Main Menu");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 158, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addGap(141, 141, 141))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(idealWeightLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(bmiLabel)
-                                .addGap(75, 75, 75))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(classificationLabel))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bmiLabel)
+                            .addComponent(classificationLabel)
+                            .addComponent(idealWeightLabel)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(weightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel6))))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(weightTextField)
-                            .addComponent(heightTextField)
-                            .addComponent(ageTextField)
-                            .addComponent(genderComboBox, 0, 118, Short.MAX_VALUE)))
+                                    .addComponent(jLabel6))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(heightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(164, 164, 164)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton2)))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,21 +151,21 @@ public class CalculatorBMI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(weightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(heightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(17, 17, 17)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(bmiLabel))
@@ -166,61 +177,75 @@ public class CalculatorBMI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(idealWeightLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    try {
-    double weight = Double.parseDouble(weightTextField.getText());
-    if (weight < 10 || weight > 500) {
-        throw new NumberFormatException();
-    }
-    
-    double height = Double.parseDouble(heightTextField.getText()) / 100;
-    if (height < 0.5 || height > 3) {
-        throw new NumberFormatException();
-    }
-    
-    int age = Integer.parseInt(ageTextField.getText());
-    if (age < 0 || age > 150) {
-        throw new NumberFormatException();
-    }
-    
-    String gender = (String) genderComboBox.getSelectedItem();
-    double idealWeight = 0;
-    
-    if (gender.equals("Male")) {
-        idealWeight = 50 + 0.91 * ((height * 100) - 152.4) + 0.1 * (age - 30);
-    } else if (gender.equals("Female")) {
-        idealWeight = 45.5 + 0.91 * ((height * 100) - 152.4) + 0.1 * (age - 30);
-    }
-    
-    idealWeightLabel.setText("Ideal Body Weight: " + String.format("%.1f", idealWeight) + " kg");
-    
-    double bmi = weight / (height * height);
-    bmiLabel.setText("BMI: " + String.format("%.1f", bmi));
-    
-    String classification = "";
-    
-    if (bmi < 18.5) {
-        classification = "Underweight";
-    } else if (bmi >= 18.5 && bmi < 25) {
-        classification = "Normal Weight";
-    } else if (bmi >= 25 && bmi < 30) {
-        classification = "Overweight";
-    } else if (bmi >= 30) {
-        classification = "Obese";
-    }
-    
-    classificationLabel.setText("Classification: " + classification);
-} catch (NumberFormatException ex) {
-    JOptionPane.showMessageDialog(this, "Please enter valid input for weight, height, and age.", "Error", JOptionPane.ERROR_MESSAGE);
-}
+        try {
+            double weight = Double.parseDouble(weightTextField.getText());
+            if (weight < 10 || weight > 500) {
+                throw new NumberFormatException();
+            }
+
+            double height = Double.parseDouble(heightTextField.getText()) / 100;
+            if (height < 0.5 || height > 3) {
+                throw new NumberFormatException();
+            }
+
+            int age = Integer.parseInt(ageTextField.getText());
+            if (age < 0 || age > 150) {
+                throw new NumberFormatException();
+            }
+
+            String gender = (String) genderComboBox.getSelectedItem();
+            double idealWeight = 0;
+
+            if (gender.equals("Male")) {
+                idealWeight = 50 + 0.91 * ((height * 100) - 152.4) + 0.1 * (age - 30);
+            } else if (gender.equals("Female")) {
+                idealWeight = 45.5 + 0.91 * ((height * 100) - 152.4) + 0.1 * (age - 30);
+            }
+
+            idealWeightLabel.setText("Ideal Body Weight: " + String.format("%.1f", idealWeight) + " kg");
+
+            double bmi = weight / (height * height);
+            bmiLabel.setText("BMI: " + String.format("%.1f", bmi));
+
+            String classification = "";
+
+            if (bmi < 18.5) {
+                classification = "Underweight";
+            } else if (bmi >= 18.5 && bmi < 25) {
+                classification = "Normal Weight";
+            } else if (bmi >= 25 && bmi < 30) {
+                classification = "Overweight";
+            } else if (bmi >= 30) {
+                classification = "Obese";
+            }
+
+            classificationLabel.setText("Classification: " + classification);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Please enter valid input for weight, height, and age.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ageTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ageTextFieldActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MainMenu().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,7 +274,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-          java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CalculatorBMI().setVisible(true);
             }
@@ -266,6 +291,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
     private javax.swing.JTextField heightTextField;
     private javax.swing.JLabel idealWeightLabel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
