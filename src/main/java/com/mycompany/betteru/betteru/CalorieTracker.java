@@ -4,6 +4,7 @@
  */
 package com.mycompany.betteru.betteru;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.DriverManager;
@@ -36,6 +37,8 @@ public class CalorieTracker extends javax.swing.JFrame {
 
     public CalorieTracker(String User) {
         initComponents();
+        Color color = new Color(245, 245, 220);
+        getContentPane().setBackground(color);
         con = DbConnection.ConnectionDB();
         // conn = Main.ConnectDb();
 
@@ -74,7 +77,7 @@ public class CalorieTracker extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        mainMenuButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -159,7 +162,7 @@ public class CalorieTracker extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Calorie Counter");
 
-        jButton1.setText("Main Menu");
+        mainMenuButton.setText("Main Menu");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -203,7 +206,7 @@ public class CalorieTracker extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)))
+                        .addComponent(mainMenuButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -240,7 +243,7 @@ public class CalorieTracker extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(60, 60, 60)
-                .addComponent(jButton1)
+                .addComponent(mainMenuButton)
                 .addContainerGap())
         );
 
@@ -348,7 +351,6 @@ public class CalorieTracker extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
     public void updateTable() {
         con = com.mycompany.betteru.betteru.DbConnection.ConnectionDB();
         if (con != null) {
@@ -383,7 +385,6 @@ public class CalorieTracker extends javax.swing.JFrame {
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnPrint;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -391,6 +392,7 @@ public class CalorieTracker extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton mainMenuButton;
     private javax.swing.JTextField txtCalories;
     private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtFood;

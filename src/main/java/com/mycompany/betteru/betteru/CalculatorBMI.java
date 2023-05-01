@@ -4,6 +4,7 @@
  */
 package com.mycompany.betteru.betteru;
 
+import java.awt.Color;
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.util.logging.Level;
@@ -21,6 +22,8 @@ public class CalculatorBMI extends javax.swing.JFrame {
      */
     public CalculatorBMI() {
         initComponents();
+        Color color = new Color(245, 245, 220);
+        getContentPane().setBackground(color);
 
     }
 
@@ -49,7 +52,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         idealWeightLabel = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        mainMenuButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -91,10 +94,10 @@ public class CalculatorBMI extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("BMI Calculator");
 
-        jButton2.setText("Main Menu");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        mainMenuButton.setText("Main Menu");
+        mainMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                mainMenuButtonActionPerformed(evt);
             }
         });
 
@@ -139,7 +142,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton2)))
+                        .addComponent(mainMenuButton)))
                 .addContainerGap(117, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -178,7 +181,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(idealWeightLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(mainMenuButton)
                 .addContainerGap())
         );
 
@@ -239,11 +242,11 @@ public class CalculatorBMI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ageTextFieldActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
 
-                dispose();
+        dispose();
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_mainMenuButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,7 +292,6 @@ public class CalculatorBMI extends javax.swing.JFrame {
     private javax.swing.JTextField heightTextField;
     private javax.swing.JLabel idealWeightLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -298,6 +300,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JButton mainMenuButton;
     private javax.swing.JTextField weightTextField;
     // End of variables declaration//GEN-END:variables
 }

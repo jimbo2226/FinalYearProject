@@ -4,6 +4,7 @@
  */
 package com.mycompany.betteru.betteru;
 
+import java.awt.Color;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
@@ -22,6 +23,8 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        Color color = new Color(245, 245, 220);
+        getContentPane().setBackground(color);
         con = DbConnection.ConnectionDB();
     }
 

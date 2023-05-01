@@ -4,6 +4,7 @@
  */
 package com.mycompany.betteru.betteru;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +18,8 @@ public class CalorieCalculator extends javax.swing.JFrame {
      */
     public CalorieCalculator() {
         initComponents();
+        Color color = new Color(245, 245, 220);
+        getContentPane().setBackground(color);
     }
 
     /**
@@ -44,7 +47,7 @@ public class CalorieCalculator extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        mainMenuButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,10 +88,10 @@ public class CalorieCalculator extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel9.setText("Calorie Calculator");
 
-        jButton1.setText("Main Menu");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        mainMenuButton.setText("Main Menu");
+        mainMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                mainMenuButtonActionPerformed(evt);
             }
         });
 
@@ -135,7 +138,7 @@ public class CalorieCalculator extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(calorieResultLabel))
                             .addComponent(jLabel7)
-                            .addComponent(jButton1))
+                            .addComponent(mainMenuButton))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -174,7 +177,7 @@ public class CalorieCalculator extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(mainMenuButton)
                 .addGap(7, 7, 7))
         );
 
@@ -244,10 +247,10 @@ public class CalorieCalculator extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_genderComboBoxActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
 
-                dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_mainMenuButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,7 +295,6 @@ public class CalorieCalculator extends javax.swing.JFrame {
     private javax.swing.JLabel calorieResultLabel;
     private javax.swing.JComboBox<String> genderComboBox;
     private javax.swing.JTextField heightTextField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -302,6 +304,7 @@ public class CalorieCalculator extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton mainMenuButton;
     private javax.swing.JTextField weightTextField;
     // End of variables declaration//GEN-END:variables
 }

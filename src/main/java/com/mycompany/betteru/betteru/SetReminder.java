@@ -4,6 +4,7 @@
  */
 package com.mycompany.betteru.betteru;
 
+import java.awt.Color;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -34,6 +35,8 @@ public class SetReminder extends javax.swing.JFrame {
         this.dateTime = dateTime;
         this.timer = new Timer();
         initComponents();
+        Color color=new Color(245,245,220);
+        getContentPane().setBackground(color);
     }
 
     /**
@@ -56,7 +59,7 @@ public class SetReminder extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        mainMenuButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,10 +87,10 @@ public class SetReminder extends javax.swing.JFrame {
 
         jLabel7.setText("Time of Reminder:");
 
-        jButton1.setText("Main Menu");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        mainMenuButton.setText("Main Menu");
+        mainMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                mainMenuButtonActionPerformed(evt);
             }
         });
 
@@ -123,7 +126,7 @@ public class SetReminder extends javax.swing.JFrame {
                         .addComponent(startButton))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)))
+                        .addComponent(mainMenuButton)))
                 .addContainerGap(184, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -155,7 +158,7 @@ public class SetReminder extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(startButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(mainMenuButton)
                 .addContainerGap())
         );
 
@@ -192,17 +195,16 @@ public class SetReminder extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Reminder created for task '" + task + "' at " + dateTime, "Success", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_startButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
 
                 dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_mainMenuButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -212,6 +214,7 @@ public class SetReminder extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JSpinner jSpinnerHour;
     private javax.swing.JSpinner jSpinnerMinute;
+    private javax.swing.JButton mainMenuButton;
     private javax.swing.JButton startButton;
     private javax.swing.JTextField taskField;
     // End of variables declaration//GEN-END:variables

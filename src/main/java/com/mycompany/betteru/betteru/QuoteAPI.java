@@ -4,6 +4,7 @@
  */
 package com.mycompany.betteru.betteru;
 
+import java.awt.Color;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -23,6 +24,8 @@ public class QuoteAPI extends javax.swing.JFrame {
      */
     public QuoteAPI() {
         initComponents();
+        Color color = new Color(245, 245, 220);
+        getContentPane().setBackground(color);
     }
 
     /**
@@ -38,7 +41,7 @@ public class QuoteAPI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        mainMenuButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,10 +59,10 @@ public class QuoteAPI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Random Inspirational Quote From API");
 
-        jButton2.setText("Main Menu");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        mainMenuButton.setText("Main Menu");
+        mainMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                mainMenuButtonActionPerformed(evt);
             }
         });
 
@@ -83,7 +86,7 @@ public class QuoteAPI extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addGap(167, 167, 167))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(mainMenuButton)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -96,7 +99,7 @@ public class QuoteAPI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(mainMenuButton)
                 .addContainerGap())
         );
 
@@ -133,10 +136,10 @@ public class QuoteAPI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
 
-                dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_mainMenuButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,9 +178,9 @@ public class QuoteAPI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton mainMenuButton;
     // End of variables declaration//GEN-END:variables
 }
