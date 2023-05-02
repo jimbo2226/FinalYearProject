@@ -90,6 +90,11 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel1.setText("Welcome!");
 
         jButton1.setText("*Habbit Tracker*");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("*Stats*");
 
@@ -223,6 +228,14 @@ public class MainMenu extends javax.swing.JFrame {
             // User clicked "No" or closed the dialog box
         }
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+               java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new HabbitTracker(LoggedInUser).setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -73,7 +73,6 @@ public class CalorieTracker extends javax.swing.JFrame {
         btnAddData = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
         btnClearData = new javax.swing.JButton();
-        btnExit = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -122,13 +121,6 @@ public class CalorieTracker extends javax.swing.JFrame {
         btnClearData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClearDataActionPerformed(evt);
-            }
-        });
-
-        btnExit.setText("Exit");
-        btnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExitActionPerformed(evt);
             }
         });
 
@@ -210,9 +202,7 @@ public class CalorieTracker extends javax.swing.JFrame {
                                 .addComponent(btnPrint)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnClearData)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnExit)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(67, 67, 67)
                                 .addComponent(btnEdit)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -257,7 +247,6 @@ public class CalorieTracker extends javax.swing.JFrame {
                             .addComponent(btnAddData)
                             .addComponent(btnPrint)
                             .addComponent(btnClearData)
-                            .addComponent(btnExit)
                             .addComponent(btnEdit)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
@@ -278,15 +267,6 @@ public class CalorieTracker extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDateActionPerformed
 
     private JFrame frame;
-    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        frame = new JFrame("Exit");
-        if (JOptionPane.showConfirmDialog(frame, "Confirm if you want to exit", "Calorie Tracker",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
-            System.exit(0);
-        };
-
-    }//GEN-LAST:event_btnExitActionPerformed
-
     private void btnClearDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearDataActionPerformed
         //txtID.setText(null);
         txtMeal.setText(null);
@@ -409,7 +389,6 @@ public class CalorieTracker extends javax.swing.JFrame {
     private javax.swing.JButton btnAddData;
     private javax.swing.JButton btnClearData;
     private javax.swing.JButton btnEdit;
-    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnPrint;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
