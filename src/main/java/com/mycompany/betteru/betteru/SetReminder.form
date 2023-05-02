@@ -64,7 +64,7 @@
                       <Component id="mainMenuButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="160" max="32767" attributes="0"/>
+              <EmptySpace pref="156" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -191,7 +191,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Logged in User"/>
+        <Property name="text" type="java.lang.String" value="Logged in User:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="userLabel">

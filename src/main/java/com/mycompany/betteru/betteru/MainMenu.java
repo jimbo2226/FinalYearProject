@@ -4,8 +4,8 @@
  */
 package com.mycompany.betteru.betteru;
 
-import static com.mycompany.betteru.betteru.SetReminder.dateTime;
-import static com.mycompany.betteru.betteru.SetReminder.task;
+//import static com.mycompany.betteru.betteru.SetReminder.dateTime;
+//import static com.mycompany.betteru.betteru.SetReminder.task;
 import java.awt.Color;
 
 /**
@@ -171,7 +171,7 @@ public class MainMenu extends javax.swing.JFrame {
     private void openBmiCalculatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBmiCalculatorActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CalculatorBMI().setVisible(true);
+                new CalculatorBMI(LoggedInUser).setVisible(true);
             }
         });
     }//GEN-LAST:event_openBmiCalculatorActionPerformed
@@ -179,7 +179,7 @@ public class MainMenu extends javax.swing.JFrame {
     private void openCalorieCalculatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openCalorieCalculatorActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CalorieCalculator().setVisible(true);
+                new CalorieCalculator(LoggedInUser).setVisible(true);
             }
         });
     }//GEN-LAST:event_openCalorieCalculatorActionPerformed
@@ -187,7 +187,7 @@ public class MainMenu extends javax.swing.JFrame {
     private void openRandomQuoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openRandomQuoteActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QuoteAPI().setVisible(true);
+                new QuoteAPI(LoggedInUser).setVisible(true);
             }
         });
     }//GEN-LAST:event_openRandomQuoteActionPerformed
@@ -195,7 +195,7 @@ public class MainMenu extends javax.swing.JFrame {
     private void openReminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openReminderActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SetReminder(task, dateTime, LoggedInUser).setVisible(true);
+                new SetReminder(LoggedInUser).setVisible(true);
             }
         });
     }//GEN-LAST:event_openReminderActionPerformed
