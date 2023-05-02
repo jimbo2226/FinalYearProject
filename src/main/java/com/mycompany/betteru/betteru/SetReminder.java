@@ -24,19 +24,22 @@ import java.util.Date;
 public class SetReminder extends javax.swing.JFrame {
 
     static String task;
-     static LocalDateTime dateTime;
-     Timer timer;
-
+    static LocalDateTime dateTime;
+    Timer timer;
+    static String LoggedInUser = null;
+    
     /**
      * Creates new form Reminder
      */
-    public SetReminder(String task, LocalDateTime dateTime) {
+    public SetReminder(String task, LocalDateTime dateTime, String User) {
         this.task = task;
         this.dateTime = dateTime;
         this.timer = new Timer();
         initComponents();
-        Color color=new Color(245,245,220);
+        Color color = new Color(245, 245, 220);
         getContentPane().setBackground(color);
+        LoggedInUser = User;
+        userLabel.setText(LoggedInUser);
     }
 
     /**
@@ -60,8 +63,10 @@ public class SetReminder extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         mainMenuButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        userLabel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Reminder Text:");
 
@@ -94,6 +99,10 @@ public class SetReminder extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Logged in User");
+
+        userLabel.setText("user");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,7 +110,11 @@ public class SetReminder extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(271, 271, 271)
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(userLabel)
+                        .addGap(175, 175, 175)
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(68, 68, 68)
@@ -127,13 +140,20 @@ public class SetReminder extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(mainMenuButton)))
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(userLabel))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
@@ -197,7 +217,7 @@ public class SetReminder extends javax.swing.JFrame {
 
     private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
 
-                dispose();
+        dispose();
     }//GEN-LAST:event_mainMenuButtonActionPerformed
 
     /**
@@ -208,6 +228,7 @@ public class SetReminder extends javax.swing.JFrame {
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -217,6 +238,7 @@ public class SetReminder extends javax.swing.JFrame {
     private javax.swing.JButton mainMenuButton;
     private javax.swing.JButton startButton;
     private javax.swing.JTextField taskField;
+    private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
 
     public static void main(String args[]) {
@@ -247,7 +269,7 @@ public class SetReminder extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SetReminder(task, dateTime).setVisible(true);
+                new SetReminder(task, dateTime, LoggedInUser).setVisible(true);
             }
         });
     }

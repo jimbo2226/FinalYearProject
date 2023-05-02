@@ -49,7 +49,7 @@ public class CalorieCalculator extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         mainMenuButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Age:");
 

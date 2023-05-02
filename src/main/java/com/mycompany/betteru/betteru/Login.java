@@ -146,7 +146,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Login Successful!");
                 java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                        new CalorieTracker(User).setVisible(true);
+                        new MainMenu(User).setVisible(true);
                     }
                 });
                 con.close();
