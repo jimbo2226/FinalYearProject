@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -66,14 +67,14 @@ public class HabbitTracker extends javax.swing.JFrame {
         txtFrequency = new javax.swing.JTextField();
         txtProgress = new javax.swing.JTextField();
         txtNotes = new javax.swing.JTextField();
-        txtDate = new javax.swing.JTextField();
         txtGoal = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
         mainMenu = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnAddData.setText("Add Data");
         btnAddData.addActionListener(new java.awt.event.ActionListener() {
@@ -160,16 +161,17 @@ public class HabbitTracker extends javax.swing.JFrame {
                                             .addComponent(txtNotes, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(95, 95, 95)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAddData))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPrint)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(mainMenu)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAddData)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnPrint)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mainMenu)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
+                .addGap(32, 32, 32))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -212,48 +214,51 @@ public class HabbitTracker extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(txtNotes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnAddData)
+                            .addComponent(btnPrint)
+                            .addComponent(mainMenu))
+                        .addGap(55, 55, 55))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(jLabel8)
-                        .addGap(59, 59, 59)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddData)
-                    .addComponent(btnPrint)
-                    .addComponent(mainMenu))
-                .addGap(55, 55, 55))
+                        .addGap(47, 47, 47)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddDataActionPerformed
-        String sql = "INSERT into HabbitTrack(HabbitName, Frequency, Goal, Progress, Notes, Date, User)VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT into HabbitTrack(HabbitName, Frequency, Goal, Progress, Notes, Date, User) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
-
             pst = con.prepareStatement(sql);
-            //  pst.setString(1, txtID.getText());
             pst.setString(1, txtHabbit.getText());
             pst.setString(2, txtFrequency.getText());
             pst.setString(3, txtGoal.getText());
             pst.setString(4, txtProgress.getText());
             pst.setString(5, txtNotes.getText());
-            pst.setString(6, txtDate.getText());
+
+            
+            java.util.Date selectedDate = jCalendar1.getDate();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            String formattedDate = dateFormat.format(selectedDate);
+
+            pst.setString(6, formattedDate);
             pst.setString(7, LoggedInUser);
-            pst.execute();
+            pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "System Update Completed");
             rs.close();
             pst.close();
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, e);
         }
-        // DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        //model.setRowCount(0);
         updateTable();
     }//GEN-LAST:event_btnAddDataActionPerformed
 
@@ -285,7 +290,7 @@ public class HabbitTracker extends javax.swing.JFrame {
             try {
                 pst = con.prepareStatement(sql);
                 rs = pst.executeQuery();
-                Object[] columnData = new Object[5];
+                Object[] columnData = new Object[6];
 
                 while (rs.next()) {
                     // columnData[0] = rs.getInt("id");
@@ -294,7 +299,7 @@ public class HabbitTracker extends javax.swing.JFrame {
                     columnData[2] = rs.getString("Goal");
                     columnData[3] = rs.getString("Progress");
                     columnData[4] = rs.getString("Notes");
-                    // columnData[4] = rs.getDate("Date");
+                    columnData[5] = rs.getString("Date");
                     model.addRow(columnData);
 
                 }
@@ -307,6 +312,7 @@ public class HabbitTracker extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddData;
     private javax.swing.JButton btnPrint;
+    private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -318,7 +324,6 @@ public class HabbitTracker extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton mainMenu;
-    private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtFrequency;
     private javax.swing.JTextField txtGoal;
     private javax.swing.JTextField txtHabbit;

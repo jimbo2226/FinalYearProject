@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -69,7 +70,6 @@ public class CalorieTracker extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtCalories = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtDate = new javax.swing.JTextField();
         btnAddData = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
         btnClearData = new javax.swing.JButton();
@@ -80,14 +80,16 @@ public class CalorieTracker extends javax.swing.JFrame {
         mainMenuButton = new javax.swing.JButton();
         userLabel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setText("Meal:");
 
-        jLabel3.setText("Food");
+        jLabel3.setText("Food:");
 
-        jLabel4.setText("Calories");
+        jLabel4.setText("Calories:");
 
         txtCalories.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,12 +98,6 @@ public class CalorieTracker extends javax.swing.JFrame {
         });
 
         jLabel5.setText("Date");
-
-        txtDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDateActionPerformed(evt);
-            }
-        });
 
         btnAddData.setText("Add Data");
         btnAddData.addActionListener(new java.awt.event.ActionListener() {
@@ -168,27 +164,19 @@ public class CalorieTracker extends javax.swing.JFrame {
 
         jLabel7.setText("Logged in User");
 
+        jButton1.setText("Update");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCalories, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFood, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMeal, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(174, 174, 174))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,14 +185,34 @@ public class CalorieTracker extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(userLabel))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAddData)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnPrint)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnClearData)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jButton1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnAddData)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnPrint)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnClearData)))
                                 .addGap(67, 67, 67)
                                 .addComponent(btnEdit)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCalories, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFood, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtMeal, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(124, 124, 124)))
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
             .addGroup(layout.createSequentialGroup()
@@ -226,8 +234,8 @@ public class CalorieTracker extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(userLabel)
                             .addComponent(jLabel7))
-                        .addGap(130, 130, 130)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(64, 64, 64)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtMeal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -238,11 +246,15 @@ public class CalorieTracker extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(txtCalories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel5)
+                                .addGap(163, 163, 163)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAddData)
                             .addComponent(btnPrint)
@@ -253,7 +265,9 @@ public class CalorieTracker extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(60, 60, 60)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(19, 19, 19)
                 .addComponent(mainMenuButton)
                 .addContainerGap())
         );
@@ -262,17 +276,13 @@ public class CalorieTracker extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDateActionPerformed
-
     private JFrame frame;
     private void btnClearDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearDataActionPerformed
         //txtID.setText(null);
         txtMeal.setText(null);
         txtFood.setText(null);
         txtCalories.setText(null);
-        txtDate.setText(null);
+
     }//GEN-LAST:event_btnClearDataActionPerformed
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
@@ -290,49 +300,28 @@ public class CalorieTracker extends javax.swing.JFrame {
         String sql = "INSERT into CalorieTrack(MealName, Food, Calories, Date, User)VALUES(?,?,?,?,?)";
 
         try {
-
             pst = con.prepareStatement(sql);
-            //  pst.setString(1, txtID.getText());
             pst.setString(1, txtMeal.getText());
             pst.setString(2, txtFood.getText());
             pst.setString(3, txtCalories.getText());
-            pst.setString(4, txtDate.getText());
+            java.util.Date selectedDate = jCalendar1.getDate();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            String formattedDate = dateFormat.format(selectedDate);
+            pst.setString(4, formattedDate);
             pst.setString(5, LoggedInUser);
-            pst.execute();
+
+            pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "System Update Completed");
             rs.close();
             pst.close();
         } catch (Exception e) {
             JOptionPane.showConfirmDialog(null, e);
         }
-        // DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        //model.setRowCount(0);
         updateTable();
     }//GEN-LAST:event_btnAddDataActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
 
-        String sql = "update CalorieTrack set MealName= ?,Food= ?,Calories= ?,User= ? where id= ?";
-
-        try {
-
-            pst = con.prepareStatement(sql);
-            //  pst.setString(1, txtID.getText());
-            pst.setString(1, txtMeal.getText());
-            pst.setString(2, txtFood.getText());
-            pst.setString(3, txtCalories.getText());
-            pst.setString(4, txtDate.getText());
-            pst.setString(5, LoggedInUser);
-            pst.execute();
-            JOptionPane.showMessageDialog(null, "System Update Completed");
-            rs.close();
-            pst.close();
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, e);
-        }
-        // DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        //model.setRowCount(0);
-        updateTable();
 
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -354,6 +343,12 @@ public class CalorieTracker extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_mainMenuButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -374,7 +369,7 @@ public class CalorieTracker extends javax.swing.JFrame {
                     columnData[0] = rs.getString("MealName");
                     columnData[1] = rs.getString("Food");
                     columnData[2] = rs.getInt("Calories");
-                    // columnData[4] = rs.getDate("Date");
+                    columnData[3] = rs.getString("Date");
                     model.addRow(columnData);
 
                 }
@@ -390,6 +385,8 @@ public class CalorieTracker extends javax.swing.JFrame {
     private javax.swing.JButton btnClearData;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnPrint;
+    private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -400,7 +397,6 @@ public class CalorieTracker extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JButton mainMenuButton;
     private javax.swing.JTextField txtCalories;
-    private javax.swing.JTextField txtDate;
     private javax.swing.JTextField txtFood;
     private javax.swing.JTextField txtMeal;
     private javax.swing.JLabel userLabel;
