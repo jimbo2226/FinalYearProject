@@ -87,6 +87,7 @@ public class CalorieTracker extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jCalendar1 = new com.toedter.calendar.JCalendar();
         btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -167,12 +168,19 @@ public class CalorieTracker extends javax.swing.JFrame {
 
         userLabel.setText("user");
 
-        jLabel7.setText("Logged in User");
+        jLabel7.setText("Logged in User:");
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
             }
         });
 
@@ -198,8 +206,9 @@ public class CalorieTracker extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
                                 .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(userLabel)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(userLabel))
+                            .addComponent(btnDelete))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -271,7 +280,9 @@ public class CalorieTracker extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(60, 60, 60)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDelete)
+                .addGap(31, 31, 31)
                 .addComponent(mainMenuButton)
                 .addContainerGap())
         );
@@ -382,6 +393,26 @@ public class CalorieTracker extends javax.swing.JFrame {
         updateTable();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this row?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        if (option == JOptionPane.YES_OPTION) {
+            try {
+                int selectedIndex = jTable1.getSelectedRow();
+                int id = ids.get(selectedIndex);
+                String sql = "DELETE FROM CalorieTrack WHERE id=?";
+                pst = con.prepareStatement(sql);
+                pst.setInt(1, id);
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Row deleted successfully");
+                rs.close();
+                pst.close();
+                updateTable();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -418,6 +449,7 @@ public class CalorieTracker extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddData;
     private javax.swing.JButton btnClearData;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnUpdate;

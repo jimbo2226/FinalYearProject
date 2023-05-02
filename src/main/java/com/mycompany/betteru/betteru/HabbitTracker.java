@@ -80,6 +80,7 @@ public class HabbitTracker extends javax.swing.JFrame {
         jCalendar1 = new com.toedter.calendar.JCalendar();
         btnUpdate = new javax.swing.JButton();
         btnMainMenu = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -152,6 +153,13 @@ public class HabbitTracker extends javax.swing.JFrame {
             }
         });
 
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -209,9 +217,11 @@ public class HabbitTracker extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnMainMenu))
+                                .addComponent(btnMainMenu)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDelete))
                             .addComponent(jLabel8))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(260, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,7 +262,8 @@ public class HabbitTracker extends javax.swing.JFrame {
                             .addComponent(btnPrint)
                             .addComponent(btnUpdate)
                             .addComponent(btnAddData)
-                            .addComponent(btnMainMenu))
+                            .addComponent(btnMainMenu)
+                            .addComponent(btnDelete))
                         .addGap(26, 26, 26))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -276,7 +287,6 @@ public class HabbitTracker extends javax.swing.JFrame {
             pst.setString(4, txtProgress.getText());
             pst.setString(5, txtNotes.getText());
 
-            
             java.util.Date selectedDate = jCalendar1.getDate();
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String formattedDate = dateFormat.format(selectedDate);
@@ -309,7 +319,7 @@ public class HabbitTracker extends javax.swing.JFrame {
     }//GEN-LAST:event_mainMenuActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-           DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int selectedIndex = jTable1.getSelectedRow();
         //System.out.println();
 
@@ -318,8 +328,7 @@ public class HabbitTracker extends javax.swing.JFrame {
         txtGoal.setText(model.getValueAt(selectedIndex, 2).toString());
         txtProgress.setText(model.getValueAt(selectedIndex, 3).toString());
         txtNotes.setText(model.getValueAt(selectedIndex, 4).toString());
-        
-        
+
         try {
             java.util.Date date = new SimpleDateFormat("dd-MM-yyyy").parse(model.getValueAt(selectedIndex, 5).toString());
             jCalendar1.setDate(date);
@@ -329,7 +338,7 @@ public class HabbitTracker extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-               String sql = "UPDATE HabbitTrack SET HabbitName=?, Frequency=?, Goal=?, Progress=?, Notes=?, Date=? WHERE id=?";
+        String sql = "UPDATE HabbitTrack SET HabbitName=?, Frequency=?, Goal=?, Progress=?, Notes=?, Date=? WHERE id=?";
 
         try {
             pst = con.prepareStatement(sql);
@@ -339,7 +348,6 @@ public class HabbitTracker extends javax.swing.JFrame {
             pst.setString(4, txtProgress.getText());
             pst.setString(5, txtNotes.getText());
 
-            
             java.util.Date selectedDate = jCalendar1.getDate();
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             String formattedDate = dateFormat.format(selectedDate);
@@ -347,8 +355,8 @@ public class HabbitTracker extends javax.swing.JFrame {
             pst.setString(6, formattedDate);
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             int selectedIndex = jTable1.getSelectedRow();
-            pst.setInt(7, ids.get(selectedIndex) );
-            
+            pst.setInt(7, ids.get(selectedIndex));
+
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "System Update Completed");
             rs.close();
@@ -362,6 +370,26 @@ public class HabbitTracker extends javax.swing.JFrame {
     private void btnMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMainMenuActionPerformed
         dispose();
     }//GEN-LAST:event_btnMainMenuActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this row?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        if (option == JOptionPane.YES_OPTION) {
+            try {
+                int selectedIndex = jTable1.getSelectedRow();
+                int id = ids.get(selectedIndex);
+                String sql = "DELETE FROM HabbitTrack WHERE id=?";
+                pst = con.prepareStatement(sql);
+                pst.setInt(1, id);
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Row deleted successfully");
+                rs.close();
+                pst.close();
+                updateTable();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,6 +427,7 @@ public class HabbitTracker extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddData;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnMainMenu;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnUpdate;
