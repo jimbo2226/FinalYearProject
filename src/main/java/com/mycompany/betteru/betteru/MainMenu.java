@@ -7,6 +7,7 @@ package com.mycompany.betteru.betteru;
 //import static com.mycompany.betteru.betteru.SetReminder.dateTime;
 //import static com.mycompany.betteru.betteru.SetReminder.task;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -209,13 +210,18 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_openCalorieTrackerActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        LoggedInUser = "";
+        int result = JOptionPane.showConfirmDialog(null, "Are you sure you want to Logout?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION) {
+            LoggedInUser = "";
             java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
+                public void run() {
+                    new Login().setVisible(true);
+                }
+            });
             dispose();
+        } else {
+            // User clicked "No" or closed the dialog box
+        }
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**
