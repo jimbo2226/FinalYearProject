@@ -7,9 +7,12 @@ package com.mycompany.betteru.betteru;
 import java.awt.Color;
 import java.sql.*;
 import java.sql.PreparedStatement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -20,9 +23,14 @@ public class CalculatorBMI extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
     String LoggedInUser = null;
+
     public CalculatorBMI(String User) {
         initComponents();
+        con = DbConnection.ConnectionDB();
         Color color = new Color(245, 245, 220);
         getContentPane().setBackground(color);
         LoggedInUser = User;
@@ -210,35 +218,18 @@ public class CalculatorBMI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             double weight = Double.parseDouble(weightTextField.getText());
-            if (weight < 10 || weight > 500) {
-                throw new NumberFormatException();
-            }
-
             double height = Double.parseDouble(heightTextField.getText()) / 100;
-            if (height < 0.5 || height > 3) {
-                throw new NumberFormatException();
-            }
-
             int age = Integer.parseInt(ageTextField.getText());
-            if (age < 0 || age > 150) {
-                throw new NumberFormatException();
-            }
-
             String gender = (String) genderComboBox.getSelectedItem();
             double idealWeight = 0;
+            String classification = "";
 
             if (gender.equals("Male")) {
                 idealWeight = 50 + 0.91 * ((height * 100) - 152.4) + 0.1 * (age - 30);
             } else if (gender.equals("Female")) {
                 idealWeight = 45.5 + 0.91 * ((height * 100) - 152.4) + 0.1 * (age - 30);
             }
-
-            idealWeightLabel.setText("Ideal Body Weight: " + String.format("%.1f", idealWeight) + " kg");
-
             double bmi = weight / (height * height);
-            bmiLabel.setText("BMI: " + String.format("%.1f", bmi));
-
-            String classification = "";
 
             if (bmi < 18.5) {
                 classification = "Underweight";
@@ -250,10 +241,35 @@ public class CalculatorBMI extends javax.swing.JFrame {
                 classification = "Obese";
             }
 
+            String bmiString = String.format("%.2f", bmi);
+            bmiLabel.setText("BMI: " + bmiString);
             classificationLabel.setText("Classification: " + classification);
+            String idealWeightString = String.format("%.2f", idealWeight);
+            idealWeightLabel.setText("Ideal Weight: " + idealWeightString + " kg");
+
+            String sql = "INSERT INTO CalculatorBMI (Weight, Height, Age, Gender, BMI, Classification, Ideal_Weight, Date, User) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setDouble(1, weight);
+            pst.setDouble(2, height);
+            pst.setInt(3, age);
+            pst.setString(4, gender);
+            pst.setDouble(5, bmi);
+            pst.setString(6, classification);
+            pst.setDouble(7, idealWeight);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            String currentDate = sdf.format(new java.util.Date());
+            pst.setString(8, currentDate);
+            pst.setString(9, LoggedInUser);
+            pst.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "BMI information saved to database.");
+            pst.close();
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Please enter valid input for weight, height, and age.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please enter valid input for weight, height, and age.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error saving BMI information to database: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -270,7 +286,6 @@ public class CalculatorBMI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ageTextField;
