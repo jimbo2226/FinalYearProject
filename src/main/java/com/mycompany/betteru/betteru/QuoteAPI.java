@@ -139,7 +139,7 @@ public class QuoteAPI extends javax.swing.JFrame {
         try {
             Response response = httpClient.newCall(request).execute();
             String jsonResponse = response.body().string();
-            System.out.println("JSON response: " + jsonResponse); // Debugging line
+            System.out.println("JSON response: " + jsonResponse); 
             JSONArray json = new JSONArray(jsonResponse);
             JSONObject quoteObj = json.getJSONObject(0);
             String quote = quoteObj.getString("q");

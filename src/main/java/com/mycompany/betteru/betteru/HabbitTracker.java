@@ -9,7 +9,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.MessageFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -28,6 +32,7 @@ public class HabbitTracker extends javax.swing.JFrame {
     ResultSet rs = null;
     DefaultTableModel model = new DefaultTableModel();
     String LoggedInUser = null;
+    ArrayList<Integer> ids = null;
 
     public HabbitTracker(String User) {
         initComponents();
@@ -73,6 +78,8 @@ public class HabbitTracker extends javax.swing.JFrame {
         mainMenu = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jCalendar1 = new com.toedter.calendar.JCalendar();
+        btnUpdate = new javax.swing.JButton();
+        btnMainMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -98,6 +105,11 @@ public class HabbitTracker extends javax.swing.JFrame {
                 "Habbit", "Frequency", "Goal", "Progress", "Notes", "Date"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setText("Habbit Name:");
@@ -126,12 +138,29 @@ public class HabbitTracker extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Habbit Tracker");
 
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnMainMenu.setText("Main Menu");
+        btnMainMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMainMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,18 +187,9 @@ public class HabbitTracker extends javax.swing.JFrame {
                                             .addComponent(txtGoal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtNotes, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAddData)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnPrint)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(mainMenu)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                                            .addComponent(txtNotes, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(mainMenu))))
+                .addGap(0, 120, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
             .addGroup(layout.createSequentialGroup()
@@ -180,8 +200,17 @@ public class HabbitTracker extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(userLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(372, 372, 372)
-                        .addComponent(jLabel8)))
+                        .addGap(151, 151, 151)
+                        .addComponent(btnAddData, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnMainMenu))
+                            .addComponent(jLabel8))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -217,12 +246,14 @@ public class HabbitTracker extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAddData)
+                            .addComponent(mainMenu)
                             .addComponent(btnPrint)
-                            .addComponent(mainMenu))
-                        .addGap(55, 55, 55))
+                            .addComponent(btnUpdate)
+                            .addComponent(btnAddData)
+                            .addComponent(btnMainMenu))
+                        .addGap(26, 26, 26))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(jLabel8)
@@ -277,6 +308,61 @@ public class HabbitTracker extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_mainMenuActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+           DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int selectedIndex = jTable1.getSelectedRow();
+        //System.out.println();
+
+        txtHabbit.setText(model.getValueAt(selectedIndex, 0).toString());
+        txtFrequency.setText(model.getValueAt(selectedIndex, 1).toString());
+        txtGoal.setText(model.getValueAt(selectedIndex, 2).toString());
+        txtProgress.setText(model.getValueAt(selectedIndex, 3).toString());
+        txtNotes.setText(model.getValueAt(selectedIndex, 4).toString());
+        
+        
+        try {
+            java.util.Date date = new SimpleDateFormat("dd-MM-yyyy").parse(model.getValueAt(selectedIndex, 5).toString());
+            jCalendar1.setDate(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(CalorieTracker.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+               String sql = "UPDATE HabbitTrack SET HabbitName=?, Frequency=?, Goal=?, Progress=?, Notes=?, Date=? WHERE id=?";
+
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setString(1, txtHabbit.getText());
+            pst.setString(2, txtFrequency.getText());
+            pst.setString(3, txtGoal.getText());
+            pst.setString(4, txtProgress.getText());
+            pst.setString(5, txtNotes.getText());
+
+            
+            java.util.Date selectedDate = jCalendar1.getDate();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            String formattedDate = dateFormat.format(selectedDate);
+
+            pst.setString(6, formattedDate);
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            int selectedIndex = jTable1.getSelectedRow();
+            pst.setInt(7, ids.get(selectedIndex) );
+            
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "System Update Completed");
+            rs.close();
+            pst.close();
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, e);
+        }
+        updateTable();
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnMainMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMainMenuActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnMainMenuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -285,14 +371,16 @@ public class HabbitTracker extends javax.swing.JFrame {
         if (con != null) {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
-            String sql = "Select HabbitName, Frequency, Goal, Progress, Notes, Date from HabbitTrack WHERE User = '" + LoggedInUser + "'";
+            String sql = "Select id, HabbitName, Frequency, Goal, Progress, Notes, Date from HabbitTrack WHERE User = '" + LoggedInUser + "'";
             System.out.println(sql);
             try {
                 pst = con.prepareStatement(sql);
                 rs = pst.executeQuery();
-                Object[] columnData = new Object[6];
+                Object[] columnData = new Object[7];
+                ids = new ArrayList();
 
                 while (rs.next()) {
+                    ids.add(rs.getInt("id"));
                     // columnData[0] = rs.getInt("id");
                     columnData[0] = rs.getString("HabbitName");
                     columnData[1] = rs.getString("Frequency");
@@ -311,7 +399,9 @@ public class HabbitTracker extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddData;
+    private javax.swing.JButton btnMainMenu;
     private javax.swing.JButton btnPrint;
+    private javax.swing.JButton btnUpdate;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
