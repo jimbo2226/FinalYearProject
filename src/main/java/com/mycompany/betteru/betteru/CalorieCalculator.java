@@ -56,7 +56,7 @@ public class CalorieCalculator extends javax.swing.JFrame {
         heightTextField = new javax.swing.JTextField();
         genderComboBox = new javax.swing.JComboBox<>();
         activityLevelComboBox = new javax.swing.JComboBox<>();
-        calculateButton = new javax.swing.JButton();
+        btnCalculate = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         calorieResultLabel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -87,10 +87,10 @@ public class CalorieCalculator extends javax.swing.JFrame {
 
         activityLevelComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedentary", "Lightly active", "Moderately active", "Very active", "Super active" }));
 
-        calculateButton.setText("Calculate");
-        calculateButton.addActionListener(new java.awt.event.ActionListener() {
+        btnCalculate.setText("Calculate");
+        btnCalculate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calculateButtonActionPerformed(evt);
+                btnCalculateActionPerformed(evt);
             }
         });
 
@@ -122,7 +122,7 @@ public class CalorieCalculator extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(calculateButton)
+                .addComponent(btnCalculate)
                 .addGap(405, 405, 405))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -131,7 +131,7 @@ public class CalorieCalculator extends javax.swing.JFrame {
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(userLabel)
-                        .addGap(279, 279, 279)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -139,9 +139,7 @@ public class CalorieCalculator extends javax.swing.JFrame {
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jLabel5)))
+                                    .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,7 +195,7 @@ public class CalorieCalculator extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(activityLevelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
-                .addComponent(calculateButton)
+                .addComponent(btnCalculate)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -214,7 +212,7 @@ public class CalorieCalculator extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void calculateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateButtonActionPerformed
+    private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
         String gender = (String) genderComboBox.getSelectedItem();
         int age;
         double weight, height;
@@ -299,7 +297,7 @@ public class CalorieCalculator extends javax.swing.JFrame {
         }
         calorieResultLabel.setText("Your approximate daily calorie intake is " + String.format("%.2f", tdee) + " calories.");
 
-    }//GEN-LAST:event_calculateButtonActionPerformed
+    }//GEN-LAST:event_btnCalculateActionPerformed
 
     private void genderComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderComboBoxActionPerformed
         // TODO add your handling code here:
@@ -317,7 +315,7 @@ public class CalorieCalculator extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> activityLevelComboBox;
     private javax.swing.JTextField ageTextField;
-    private javax.swing.JButton calculateButton;
+    private javax.swing.JButton btnCalculate;
     private javax.swing.JLabel calorieResultLabel;
     private javax.swing.JComboBox<String> genderComboBox;
     private javax.swing.JTextField heightTextField;

@@ -10,6 +10,14 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.json.JSONObject;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -22,10 +30,14 @@ public class QuoteAPI extends javax.swing.JFrame {
     /**
      * Creates new form QuoteAPI
      */
+    Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
     String LoggedInUser = null;
-    
+
     public QuoteAPI(String User) {
         initComponents();
+        con = DbConnection.ConnectionDB();
         Color color = new Color(245, 245, 220);
         getContentPane().setBackground(color);
         LoggedInUser = User;
@@ -41,7 +53,7 @@ public class QuoteAPI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnQuote = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
@@ -51,10 +63,10 @@ public class QuoteAPI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButton1.setText("Get Quote");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnQuote.setText("Get Quote");
+        btnQuote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnQuoteActionPerformed(evt);
             }
         });
 
@@ -103,7 +115,7 @@ public class QuoteAPI extends javax.swing.JFrame {
                 .addGap(64, 64, 64))
             .addGroup(layout.createSequentialGroup()
                 .addGap(307, 307, 307)
-                .addComponent(jButton1)
+                .addComponent(btnQuote)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -118,7 +130,7 @@ public class QuoteAPI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addComponent(jButton1)
+                .addComponent(btnQuote)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                 .addComponent(mainMenuButton)
                 .addContainerGap())
@@ -127,7 +139,7 @@ public class QuoteAPI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnQuoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuoteActionPerformed
         jTextArea1.setText("");
         String apiUrl = "https://zenquotes.io/api/random";
 
@@ -139,7 +151,7 @@ public class QuoteAPI extends javax.swing.JFrame {
         try {
             Response response = httpClient.newCall(request).execute();
             String jsonResponse = response.body().string();
-            System.out.println("JSON response: " + jsonResponse); 
+            System.out.println("JSON response: " + jsonResponse);
             JSONArray json = new JSONArray(jsonResponse);
             JSONObject quoteObj = json.getJSONObject(0);
             String quote = quoteObj.getString("q");
@@ -149,13 +161,32 @@ public class QuoteAPI extends javax.swing.JFrame {
             jTextArea1.append(quoteWithAuthor);
 
             response.close();
+
+            String sql = "INSERT INTO RandomQuote (Quote, Author, Date, User) VALUES (?, ?, ?, ?)";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, quote);
+            pst.setString(2, author);
+
+            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            Date date = new Date();
+            String strDate = dateFormat.format(date);
+
+            pst.setString(3, strDate);
+            pst.setString(4, LoggedInUser);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Quote saved to database.");
+            pst.close();
+
         } catch (IOException e) {
             System.err.println("Error making API request: " + e.getMessage());
         } catch (JSONException e) {
             System.err.println("Error parsing JSON response: " + e.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_btnQuoteActionPerformed
 
     private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
 
@@ -166,9 +197,8 @@ public class QuoteAPI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnQuote;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -51,7 +51,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         weightTextField = new javax.swing.JTextField();
         heightTextField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnCalculate = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         bmiLabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -73,10 +73,10 @@ public class CalculatorBMI extends javax.swing.JFrame {
 
         jLabel2.setText("Height: (cm)");
 
-        jButton1.setText("Calculate");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCalculate.setText("Calculate");
+        btnCalculate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCalculateActionPerformed(evt);
             }
         });
 
@@ -159,7 +159,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
                                     .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(164, 164, 164)
-                        .addComponent(jButton1))
+                        .addComponent(btnCalculate))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(mainMenuButton)))
@@ -194,7 +194,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(genderComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnCalculate)
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -215,7 +215,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateActionPerformed
         try {
             double weight = Double.parseDouble(weightTextField.getText());
             double height = Double.parseDouble(heightTextField.getText()) / 100;
@@ -271,7 +271,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCalculateActionPerformed
 
     private void ageTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageTextFieldActionPerformed
         // TODO add your handling code here:
@@ -290,11 +290,11 @@ public class CalculatorBMI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ageTextField;
     private javax.swing.JLabel bmiLabel;
+    private javax.swing.JButton btnCalculate;
     private javax.swing.JLabel classificationLabel;
     private javax.swing.JComboBox<String> genderComboBox;
     private javax.swing.JTextField heightTextField;
     private javax.swing.JLabel idealWeightLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
