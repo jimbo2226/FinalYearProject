@@ -67,6 +67,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
         btnClear = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -122,6 +123,13 @@ public class CalculatorBMI extends javax.swing.JFrame {
             }
         });
 
+        btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,8 +156,10 @@ public class CalculatorBMI extends javax.swing.JFrame {
                                 .addGap(21, 21, 21)
                                 .addComponent(btnCalculate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(215, 215, 215))
+                                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnView)))
+                        .addGap(136, 136, 136))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -198,7 +208,8 @@ public class CalculatorBMI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCalculate)
-                    .addComponent(btnClear))
+                    .addComponent(btnClear)
+                    .addComponent(btnView))
                 .addGap(44, 44, 44)
                 .addComponent(bmiLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -296,6 +307,14 @@ public class CalculatorBMI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnClearActionPerformed
 
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+               java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new viewBMI(LoggedInUser).setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_btnViewActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -305,6 +324,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
     private javax.swing.JLabel bmiLabel;
     private javax.swing.JButton btnCalculate;
     private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnView;
     private javax.swing.JLabel classificationLabel;
     private javax.swing.JComboBox<String> genderComboBox;
     private javax.swing.JTextField heightTextField;
