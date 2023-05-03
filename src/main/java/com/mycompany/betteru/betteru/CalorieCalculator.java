@@ -5,6 +5,13 @@
 package com.mycompany.betteru.betteru;
 
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,9 +23,14 @@ public class CalorieCalculator extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
     String LoggedInUser = null;
+
     public CalorieCalculator(String User) {
         initComponents();
+        con = DbConnection.ConnectionDB();
         Color color = new Color(245, 245, 220);
         getContentPane().setBackground(color);
         LoggedInUser = User;
@@ -258,7 +270,35 @@ public class CalorieCalculator extends javax.swing.JFrame {
                 return;
         }
 
+        PreparedStatement pst = null;
+        try {
+            String sql = "INSERT INTO CalorieCalculator (Age, Weight, Height, Gender, ActivityLevel, Result, Date, User) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, age);
+            pst.setDouble(2, weight);
+            pst.setDouble(3, height);
+            pst.setString(4, gender);
+            pst.setString(5, activityLevel);
+            pst.setDouble(6, tdee);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            String currentDate = sdf.format(new java.util.Date());
+            pst.setString(7, currentDate);
+            pst.setString(8, LoggedInUser);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Calorie information saved to database.");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        } finally {
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(CalorieCalculator.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
         calorieResultLabel.setText("Your approximate daily calorie intake is " + String.format("%.2f", tdee) + " calories.");
+
     }//GEN-LAST:event_calculateButtonActionPerformed
 
     private void genderComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderComboBoxActionPerformed
@@ -273,7 +313,6 @@ public class CalorieCalculator extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> activityLevelComboBox;
