@@ -8,32 +8,28 @@ import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author James
  */
-public class ViewBMI extends javax.swing.JFrame {
+public class ViewCalorieCalculator extends javax.swing.JFrame {
 
     /**
-     * Creates new form viewBMI
+     * Creates new form ViewCalorieCalculator
      */
-    Connection con = null;
+    
+        Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
     String LoggedInUser = null;
     ArrayList<Integer> ids = null;
-
-    public ViewBMI(String User) {
-        initComponents();
+    
+    public ViewCalorieCalculator(String User) {
+                initComponents();
         Color color = new Color(245, 245, 220);
         getContentPane().setBackground(color);
         con = DbConnection.ConnectionDB();
@@ -57,7 +53,6 @@ public class ViewBMI extends javax.swing.JFrame {
         lblUser = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,66 +61,56 @@ public class ViewBMI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Weight", "Height", "Age", "Gender", "BMI", "Classification", "Ideal Weight", "Date"
+                "Age", "Weight", "Height", "Gender", "ActivityLevel", "Result", "Title 7"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("BMI History for");
+        jLabel1.setText("Logged in user");
 
-        lblUser.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblUser.setText("jLabel2");
 
         jButton1.setText("Delete");
 
         jButton2.setText("Print");
 
-        jButton3.setText("Close");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 834, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(163, 163, 163))
             .addGroup(layout.createSequentialGroup()
-                .addGap(416, 416, 416)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblUser)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2))
+                        .addGap(47, 47, 47)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 826, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblUser)))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(lblUser))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(jButton3)
-                        .addContainerGap())))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -134,30 +119,32 @@ public class ViewBMI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void updateTable() {
+ 
+    
+    
+        public void updateTable() {
         con = com.mycompany.betteru.betteru.DbConnection.ConnectionDB();
         if (con != null) {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
-            String sql = "Select id, Weight, Height, Age, Gender, BMI, Classification, Ideal_Weight, Date from CalculatorBMI WHERE User = '" + LoggedInUser + "'";
+            String sql = "Select id, Age, Weight, Height, Gender, ActivityLevel, Result, Date from CalorieCalculator WHERE User = '" + LoggedInUser + "'";
             System.out.println(sql);
             try {
                 pst = con.prepareStatement(sql);
                 rs = pst.executeQuery();
-                Object[] columnData = new Object[9];
+                Object[] columnData = new Object[8];
                 ids = new ArrayList();
 
                 while (rs.next()) {
                     ids.add(rs.getInt("id"));
                     // columnData[0] = rs.getInt("id");
-                    columnData[0] = rs.getDouble("Weight");
-                    columnData[1] = rs.getDouble("Height");
-                    columnData[2] = rs.getInt("Age");
+                    columnData[0] = rs.getInt("Age");
+                    columnData[1] = rs.getDouble("Weight");
+                    columnData[2] = rs.getDouble("Height");
                     columnData[3] = rs.getString("Gender");
-                    columnData[4] = rs.getDouble("BMI");
-                    columnData[5] = rs.getString("Classification");
-                    columnData[6] = rs.getDouble("Ideal_Weight");
-                    columnData[7] = rs.getString("Date");
+                    columnData[4] = rs.getString("ActivityLevel");
+                    columnData[5] = rs.getDouble("Result");
+                    columnData[6] = rs.getString("Date");
                     model.addRow(columnData);
 
                 }
@@ -170,7 +157,6 @@ public class ViewBMI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

@@ -69,6 +69,7 @@ public class CalorieCalculator extends javax.swing.JFrame {
         userLabel = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         btnClear = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -131,6 +132,13 @@ public class CalorieCalculator extends javax.swing.JFrame {
             }
         });
 
+        btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -185,19 +193,24 @@ public class CalorieCalculator extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(mainMenuButton)
                         .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(210, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel8))
-                .addGap(200, 200, 200))
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(lblTxtResult)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(calorieResultLabel)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(210, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel8))
+                        .addGap(200, 200, 200))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnView)
+                        .addGap(438, 438, 438))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,7 +251,9 @@ public class CalorieCalculator extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCalculate)
                     .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnView)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(calorieResultLabel)
                     .addComponent(lblTxtResult))
@@ -357,6 +372,14 @@ public class CalorieCalculator extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnClearActionPerformed
 
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+               java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ViewCalorieCalculator(LoggedInUser).setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_btnViewActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -366,6 +389,7 @@ public class CalorieCalculator extends javax.swing.JFrame {
     private javax.swing.JTextField ageTextField;
     private javax.swing.JButton btnCalculate;
     private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnView;
     private javax.swing.JLabel calorieResultLabel;
     private javax.swing.JComboBox<String> genderComboBox;
     private javax.swing.JTextField heightTextField;
