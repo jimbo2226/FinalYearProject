@@ -7,6 +7,7 @@ package com.mycompany.betteru.betteru;
 //import static com.mycompany.betteru.betteru.SetReminder.dateTime;
 //import static com.mycompany.betteru.betteru.SetReminder.task;
 import java.awt.Color;
+import java.awt.Insets;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,7 +38,6 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        openBmiCalculator = new javax.swing.JButton();
         openCalorieCalculator = new javax.swing.JButton();
         openCalorieTracker = new javax.swing.JButton();
         openRandomQuote = new javax.swing.JButton();
@@ -48,38 +48,40 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
+        openBmiCalculator = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        openBmiCalculator.setText("BMI Calculator");
-        openBmiCalculator.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openBmiCalculatorActionPerformed(evt);
-            }
-        });
-
+        openCalorieCalculator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Calorie_Calculator.png"))); // NOI18N
         openCalorieCalculator.setText("Calorie Calculator");
+        openCalorieCalculator.setFocusPainted(false);
         openCalorieCalculator.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 openCalorieCalculatorActionPerformed(evt);
             }
         });
 
+        openCalorieTracker.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Calorie_Tracker.png"))); // NOI18N
         openCalorieTracker.setText("Calorie Tracker");
+        openCalorieTracker.setFocusPainted(false);
         openCalorieTracker.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 openCalorieTrackerActionPerformed(evt);
             }
         });
 
+        openRandomQuote.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Quote.png"))); // NOI18N
         openRandomQuote.setText("Random Quote");
+        openRandomQuote.setFocusPainted(false);
         openRandomQuote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 openRandomQuoteActionPerformed(evt);
             }
         });
 
+        openReminder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Reminder.png"))); // NOI18N
         openReminder.setText("Reminder");
+        openReminder.setFocusPainted(false);
         openReminder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 openReminderActionPerformed(evt);
@@ -89,14 +91,18 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Welcome!");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Habbit_Tracker.png"))); // NOI18N
         jButton1.setText("Habbit Tracker");
+        jButton1.setFocusPainted(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Stats.png"))); // NOI18N
         jButton2.setText("*Stats & Suggestions*");
+        jButton2.setFocusPainted(false);
 
         jLabel2.setText("Logged in User:");
 
@@ -109,78 +115,85 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        openBmiCalculator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BMI_Calculator.png"))); // NOI18N
+        openBmiCalculator.setText("BMI Calculator");
+        openBmiCalculator.setFocusPainted(false);
+        openBmiCalculator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openBmiCalculatorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(208, 208, 208)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(openReminder, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(openBmiCalculator, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(openCalorieCalculator, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(openCalorieTracker, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addComponent(openRandomQuote, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                        .addComponent(logoutButton)
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(userLabel)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(openRandomQuote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(openBmiCalculator, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(openCalorieTracker, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(openReminder, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(openCalorieCalculator, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(userLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
-                        .addComponent(logoutButton)
-                        .addGap(48, 48, 48))))
+                        .addGap(275, 275, 275)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(userLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(openBmiCalculator)
-                    .addComponent(jButton1))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(openCalorieTracker)
-                    .addComponent(jButton2))
-                .addGap(18, 18, 18)
-                .addComponent(openReminder)
-                .addGap(18, 18, 18)
-                .addComponent(openRandomQuote)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(openCalorieCalculator)
-                    .addComponent(logoutButton))
-                .addContainerGap(24, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logoutButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(userLabel))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addGap(40, 40, 40)
+                        .addComponent(openBmiCalculator, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(openCalorieTracker, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(openCalorieCalculator, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(openReminder, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(openRandomQuote, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(150, 150, 150))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void openBmiCalculatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBmiCalculatorActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CalculatorBMI(LoggedInUser).setVisible(true);
-            }
-        });
-    }//GEN-LAST:event_openBmiCalculatorActionPerformed
 
     private void openCalorieCalculatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openCalorieCalculatorActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -236,6 +249,15 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void openBmiCalculatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBmiCalculatorActionPerformed
+            // openBmiCalculator.setMargin(new Insets(0, 0, 0, 0));
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CalculatorBMI(LoggedInUser).setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_openBmiCalculatorActionPerformed
 
     /**
      * @param args the command line arguments
