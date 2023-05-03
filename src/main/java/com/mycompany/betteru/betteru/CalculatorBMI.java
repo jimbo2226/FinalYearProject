@@ -310,7 +310,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
                java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewBMI(LoggedInUser).setVisible(true);
+                new viewBMI(LoggedInUser).setVisible(true);
             }
         });
     }//GEN-LAST:event_btnViewActionPerformed

@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author James
  */
-public class ViewBMI extends javax.swing.JFrame {
+public class viewBMI extends javax.swing.JFrame {
 
     /**
      * Creates new form viewBMI
@@ -32,7 +32,7 @@ public class ViewBMI extends javax.swing.JFrame {
     String LoggedInUser = null;
     ArrayList<Integer> ids = null;
 
-    public ViewBMI(String User) {
+    public viewBMI(String User) {
         initComponents();
         Color color = new Color(245, 245, 220);
         getContentPane().setBackground(color);
