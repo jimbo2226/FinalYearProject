@@ -242,7 +242,6 @@ public class SetReminder extends javax.swing.JFrame {
             String timeStr = dateTime.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
             JOptionPane.showMessageDialog(this, "Reminder created for task '" + task + "' at " + dateStr + " " + timeStr, "Success", JOptionPane.INFORMATION_MESSAGE);
 
-            // Insert reminder into database
             String sql = "INSERT INTO Reminder (ReminderText, DateReminder, TimeReminder, Date, User) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, task);
