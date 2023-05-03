@@ -12,10 +12,16 @@ import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
 import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,20 +33,24 @@ public class SetReminder extends javax.swing.JFrame {
     LocalDateTime dateTime;
     Timer timer;
     String LoggedInUser = null;
-    
+    Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+
     /**
      * Creates new form Reminder
      */
     public SetReminder(String User) {
-      //  this.task = task;
+        //  this.task = task;
         //this.dateTime = dateTime;
         this.timer = new Timer();
         initComponents();
+        con = DbConnection.ConnectionDB();
         Color color = new Color(245, 245, 220);
         getContentPane().setBackground(color);
         LoggedInUser = User;
         userLabel.setText(LoggedInUser);
-        
+
     }
 
     /**
@@ -201,33 +211,52 @@ public class SetReminder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        String task = taskField.getText().trim();
-        if (task.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter a message for the reminder.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        LocalDate date = jCalendar1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        int hour = (int) jSpinnerHour.getValue();
-        int minute = (int) jSpinnerMinute.getValue();
-
-        LocalDateTime dateTime = LocalDateTime.of(date, LocalTime.of(hour, minute));
-
-        TimerTask reminderTask = new TimerTask() {
-            @Override
-            public void run() {
-                Toolkit.getDefaultToolkit().beep();
-                JOptionPane.showMessageDialog(SetReminder.this, "Reminder: " + task, "Reminder", JOptionPane.INFORMATION_MESSAGE);
-
-                timer.cancel();
+        try {
+            String task = taskField.getText().trim();
+            if (task.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter a message for the reminder.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
-        };
 
-        Timer timer = new Timer();
-        timer.schedule(reminderTask, Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant()));
+            LocalDate date = jCalendar1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            int hour = (int) jSpinnerHour.getValue();
+            int minute = (int) jSpinnerMinute.getValue();
 
-        taskField.setText("");
-        JOptionPane.showMessageDialog(this, "Reminder created for task '" + task + "' at " + dateTime, "Success", JOptionPane.INFORMATION_MESSAGE);
+            LocalDateTime dateTime = LocalDateTime.of(date, LocalTime.of(hour, minute));
+
+            TimerTask reminderTask = new TimerTask() {
+                @Override
+                public void run() {
+                    Toolkit.getDefaultToolkit().beep();
+                    JOptionPane.showMessageDialog(SetReminder.this, "Reminder: " + task, "Reminder", JOptionPane.INFORMATION_MESSAGE);
+
+                    timer.cancel();
+                }
+            };
+
+            Timer timer = new Timer();
+            timer.schedule(reminderTask, Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant()));
+
+            taskField.setText("");
+            String dateStr = dateTime.toLocalDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            String timeStr = dateTime.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+            JOptionPane.showMessageDialog(this, "Reminder created for task '" + task + "' at " + dateStr + " " + timeStr, "Success", JOptionPane.INFORMATION_MESSAGE);
+
+            // Insert reminder into database
+            String sql = "INSERT INTO Reminder (ReminderText, DateReminder, TimeReminder, Date, User) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, task);
+            pst.setString(2, dateStr);
+            pst.setDouble(3, Double.parseDouble(dateTime.toLocalTime().format(DateTimeFormatter.ofPattern("HH.mm"))));
+            String formattedDate = dateTime.toLocalDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            pst.setString(4, formattedDate);
+            pst.setString(5, LoggedInUser);
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Reminder saved to database.");
+            pst.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed
@@ -236,7 +265,7 @@ public class SetReminder extends javax.swing.JFrame {
     }//GEN-LAST:event_mainMenuButtonActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-                java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ViewSetReminder(LoggedInUser).setVisible(true);
             }
@@ -264,8 +293,6 @@ public class SetReminder extends javax.swing.JFrame {
     private javax.swing.JTextField taskField;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
-
-
 
     private void schedule() {
         TimerTask task = new TimerTask() {
