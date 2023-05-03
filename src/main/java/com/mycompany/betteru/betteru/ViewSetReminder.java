@@ -16,10 +16,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author James
  */
-public class ViewQuoteAPI extends javax.swing.JFrame {
+public class ViewSetReminder extends javax.swing.JFrame {
 
     /**
-     * Creates new form ViewQuoteAPI
+     * Creates new form ViewSetReminder
      */
     Connection con = null;
     PreparedStatement pst = null;
@@ -27,7 +27,7 @@ public class ViewQuoteAPI extends javax.swing.JFrame {
     String LoggedInUser = null;
     ArrayList<Integer> ids = null;
 
-    public ViewQuoteAPI(String User) {
+    public ViewSetReminder(String User) {
         initComponents();
         Color color = new Color(245, 245, 220);
         getContentPane().setBackground(color);
@@ -61,13 +61,13 @@ public class ViewQuoteAPI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Quote", "Author", "Date"
+                "ReminderText", "DateReminder", "TimeReminder", "Date"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Logged in user");
+        jLabel1.setText("Reminders for");
 
         lblUser.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblUser.setText("jLabel2");
@@ -83,19 +83,19 @@ public class ViewQuoteAPI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(83, 83, 83)
+                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
                 .addComponent(jButton3)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(424, 424, 424)
+                .addGap(306, 306, 306)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblUser)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -106,18 +106,19 @@ public class ViewQuoteAPI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(lblUser))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addGap(32, 32, 32))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addContainerGap())
+                        .addComponent(jButton2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton3)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
 
         pack();
@@ -126,25 +127,28 @@ public class ViewQuoteAPI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public void updateTable() {
+  
+    
+        public void updateTable() {
         con = com.mycompany.betteru.betteru.DbConnection.ConnectionDB();
         if (con != null) {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             model.setRowCount(0);
-            String sql = "Select id, Quote, Author, Date from RandomQuote WHERE User = '" + LoggedInUser + "'";
+            String sql = "Select id, ReminderText, DateReminder, TimeReminder, Date from Reminder WHERE User = '" + LoggedInUser + "'";
             System.out.println(sql);
             try {
                 pst = con.prepareStatement(sql);
                 rs = pst.executeQuery();
-                Object[] columnData = new Object[4];
+                Object[] columnData = new Object[5];
                 ids = new ArrayList();
 
                 while (rs.next()) {
                     ids.add(rs.getInt("id"));
                     // columnData[0] = rs.getInt("id");
-                    columnData[0] = rs.getString("Quote");
-                    columnData[1] = rs.getString("Author");
-                    columnData[2] = rs.getString("Date");
+                    columnData[0] = rs.getString("ReminderText");
+                    columnData[1] = rs.getString("DateReminder");
+                    columnData[2] = rs.getDouble("TimeReminder");
+                    columnData[3] = rs.getString("Date");
                     model.addRow(columnData);
 
                 }

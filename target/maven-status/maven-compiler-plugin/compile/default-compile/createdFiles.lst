@@ -11,7 +11,6 @@ com\mycompany\betteru\betteru\QuoteAPI$2.class
 com\mycompany\betteru\betteru\ViewCalorieCalculator.class
 com\mycompany\betteru\betteru\CalculatorBMI.class
 com\mycompany\betteru\betteru\Login$4.class
-com\mycompany\betteru\betteru\ViewBMI.class
 com\mycompany\betteru\betteru\CalorieCalculator$3.class
 com\mycompany\betteru\betteru\Registration$2.class
 com\mycompany\betteru\betteru\CalorieTracker$3.class
@@ -48,7 +47,6 @@ com\mycompany\betteru\betteru\HabbitTracker$6.class
 com\mycompany\betteru\betteru\CalorieCalculator$2.class
 com\mycompany\betteru\betteru\MainMenu$1.class
 com\mycompany\betteru\betteru\CalculatorBMI$1.class
-com\mycompany\betteru\betteru\ViewQuote.class
 com\mycompany\betteru\betteru\Login$5.class
 com\mycompany\betteru\betteru\SetReminder$2.class
 com\mycompany\betteru\betteru\MainMenu$8.class
@@ -56,6 +54,7 @@ com\mycompany\betteru\betteru\CalculatorBMI$2.class
 com\mycompany\betteru\betteru\QuoteAPI$1.class
 com\mycompany\betteru\betteru\CalorieTracker$8.class
 com\mycompany\betteru\betteru\CalorieCalculator.class
+com\mycompany\betteru\betteru\QuoteAPI$4.class
 com\mycompany\betteru\betteru\MainMenu$13.class
 com\mycompany\betteru\betteru\CalorieCalculator$6.class
 com\mycompany\betteru\betteru\MainMenu$5.class
@@ -69,6 +68,8 @@ com\mycompany\betteru\betteru\MainMenu$9.class
 com\mycompany\betteru\betteru\CalorieTracker$4.class
 com\mycompany\betteru\betteru\MainMenu$12.class
 com\mycompany\betteru\betteru\MainMenu$2.class
+com\mycompany\betteru\betteru\ViewCalculatorBMI.class
+com\mycompany\betteru\betteru\ViewQuoteAPI.class
 com\mycompany\betteru\betteru\Login$3.class
+com\mycompany\betteru\betteru\QuoteAPI$5.class
 com\mycompany\betteru\betteru\CalculatorBMI$3.class
-com\mycompany\betteru\betteru\ViewQuote$1.class
