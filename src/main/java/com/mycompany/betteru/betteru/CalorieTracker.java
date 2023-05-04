@@ -5,6 +5,7 @@
 package com.mycompany.betteru.betteru;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.DriverManager;
@@ -19,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -43,6 +45,9 @@ public class CalorieTracker extends javax.swing.JFrame {
 
     public CalorieTracker(String User) {
         initComponents();
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
+        Image image = icon.getImage().getScaledInstance(icon.getIconWidth() * 4, icon.getIconHeight() * 4, Image.SCALE_DEFAULT);
+        this.setIconImage(image);
         Color color = new Color(245, 245, 220);
         getContentPane().setBackground(color);
         con = DbConnection.ConnectionDB();
@@ -333,15 +338,14 @@ public class CalorieTracker extends javax.swing.JFrame {
         txtMeal.setText(model.getValueAt(selectedIndex, 0).toString());
         txtFood.setText(model.getValueAt(selectedIndex, 1).toString());
         txtCalories.setText(model.getValueAt(selectedIndex, 2).toString());
-        
+
         try {
             java.util.Date date = new SimpleDateFormat("dd-MM-yyyy").parse(model.getValueAt(selectedIndex, 3).toString());
             jCalendar1.setDate(date);
         } catch (ParseException ex) {
             Logger.getLogger(CalorieTracker.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
         //txtDate.setText(model.getValueAt(selectedIndex, 3).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -366,8 +370,8 @@ public class CalorieTracker extends javax.swing.JFrame {
             String formattedDate = dateFormat.format(selectedDate);
             pst.setString(4, formattedDate);
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        int selectedIndex = jTable1.getSelectedRow();
-            pst.setInt(5, ids.get(selectedIndex) );
+            int selectedIndex = jTable1.getSelectedRow();
+            pst.setInt(5, ids.get(selectedIndex));
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "System Update Completed");

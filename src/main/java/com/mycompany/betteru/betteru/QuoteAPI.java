@@ -5,6 +5,7 @@
 package com.mycompany.betteru.betteru;
 
 import java.awt.Color;
+import java.awt.Image;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -17,6 +18,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +39,9 @@ public class QuoteAPI extends javax.swing.JFrame {
 
     public QuoteAPI(String User) {
         initComponents();
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
+        Image image = icon.getImage().getScaledInstance(icon.getIconWidth() * 4, icon.getIconHeight() * 4, Image.SCALE_DEFAULT);
+        this.setIconImage(image);
         con = DbConnection.ConnectionDB();
         Color color = new Color(245, 245, 220);
         getContentPane().setBackground(color);
@@ -225,7 +230,7 @@ public class QuoteAPI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-                java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ViewQuoteAPI(LoggedInUser).setVisible(true);
             }
@@ -235,8 +240,6 @@ public class QuoteAPI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;

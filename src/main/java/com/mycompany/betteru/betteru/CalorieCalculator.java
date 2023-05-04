@@ -5,6 +5,7 @@
 package com.mycompany.betteru.betteru;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,6 +32,9 @@ public class CalorieCalculator extends javax.swing.JFrame {
 
     public CalorieCalculator(String User) {
         initComponents();
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
+        Image image = icon.getImage().getScaledInstance(icon.getIconWidth() * 4, icon.getIconHeight() * 4, Image.SCALE_DEFAULT);
+        this.setIconImage(image);
         lblTxtResult.setVisible(false);
         calorieResultLabel.setVisible(false);
         con = DbConnection.ConnectionDB();
@@ -368,12 +373,12 @@ public class CalorieCalculator extends javax.swing.JFrame {
         weightTextField.setText("");
         heightTextField.setText("");
         calorieResultLabel.setText("");
-        
-        
+
+
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-               java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ViewCalorieCalculator(LoggedInUser).setVisible(true);
             }

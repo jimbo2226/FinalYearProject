@@ -5,6 +5,7 @@
 package com.mycompany.betteru.betteru;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -22,6 +23,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -45,6 +47,9 @@ public class SetReminder extends javax.swing.JFrame {
         //this.dateTime = dateTime;
         this.timer = new Timer();
         initComponents();
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
+        Image image = icon.getImage().getScaledInstance(icon.getIconWidth() * 4, icon.getIconHeight() * 4, Image.SCALE_DEFAULT);
+        this.setIconImage(image);
         con = DbConnection.ConnectionDB();
         Color color = new Color(245, 245, 220);
         getContentPane().setBackground(color);

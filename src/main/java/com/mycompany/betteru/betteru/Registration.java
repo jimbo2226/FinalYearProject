@@ -5,9 +5,11 @@
 package com.mycompany.betteru.betteru;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,7 +27,10 @@ public class Registration extends javax.swing.JFrame {
      */
     public Registration() {
         initComponents();
-        Color color=new Color(245,245,220);
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
+        Image image = icon.getImage().getScaledInstance(icon.getIconWidth() * 4, icon.getIconHeight() * 4, Image.SCALE_DEFAULT);
+        this.setIconImage(image);
+        Color color = new Color(245, 245, 220);
         getContentPane().setBackground(color);
         con = DbConnection.ConnectionDB();
     }

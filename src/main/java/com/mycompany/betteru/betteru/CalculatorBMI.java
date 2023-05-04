@@ -5,6 +5,7 @@
 package com.mycompany.betteru.betteru;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.text.ParseException;
@@ -13,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.text.SimpleDateFormat;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -30,6 +32,9 @@ public class CalculatorBMI extends javax.swing.JFrame {
 
     public CalculatorBMI(String User) {
         initComponents();
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
+        Image image = icon.getImage().getScaledInstance(icon.getIconWidth() * 4, icon.getIconHeight() * 4, Image.SCALE_DEFAULT);
+        this.setIconImage(image);
         bmiLabel.setVisible(false);
         classificationLabel.setVisible(false);
         idealWeightLabel.setVisible(false);
@@ -303,12 +308,12 @@ public class CalculatorBMI extends javax.swing.JFrame {
         bmiLabel.setText("BMI: ");
         classificationLabel.setText("Classification: ");
         idealWeightLabel.setText("Ideal Weight: ");
-        
-        
+
+
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-           java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ViewCalculatorBMI(LoggedInUser).setVisible(true);
             }
