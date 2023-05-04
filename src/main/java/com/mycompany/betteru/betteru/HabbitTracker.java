@@ -70,7 +70,7 @@ public class HabbitTracker extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtHabbit = new javax.swing.JTextField();
         txtFrequency = new javax.swing.JTextField();
-        txtProgress = new javax.swing.JTextField();
+        ggg = new javax.swing.JTextField();
         txtNotes = new javax.swing.JTextField();
         txtGoal = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -80,6 +80,7 @@ public class HabbitTracker extends javax.swing.JFrame {
         jCalendar1 = new com.toedter.calendar.JCalendar();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        txtProgress = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -154,6 +155,8 @@ public class HabbitTracker extends javax.swing.JFrame {
             }
         });
 
+        txtProgress.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,19 +192,17 @@ public class HabbitTracker extends javax.swing.JFrame {
                                                 .addGap(4, 4, 4)
                                                 .addComponent(txtFrequency, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(txtGoal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(ggg, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                     .addComponent(txtHabbit, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(txtGoal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel3))
-                                        .addGap(23, 23, 23)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtNotes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                    .addComponent(txtNotes, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(372, 372, 372)
                                 .addComponent(jLabel8)))
@@ -224,7 +225,9 @@ public class HabbitTracker extends javax.swing.JFrame {
                     .addComponent(userLabel))
                 .addGap(3, 3, 3)
                 .addComponent(jLabel8)
-                .addGap(96, 96, 96)
+                .addGap(20, 20, 20)
+                .addComponent(ggg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -238,10 +241,10 @@ public class HabbitTracker extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(txtGoal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(txtProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -250,7 +253,7 @@ public class HabbitTracker extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDelete)
                             .addComponent(btnPrint)
@@ -275,7 +278,7 @@ public class HabbitTracker extends javax.swing.JFrame {
             pst.setString(1, txtHabbit.getText());
             pst.setString(2, txtFrequency.getText());
             pst.setString(3, txtGoal.getText());
-            pst.setString(4, txtProgress.getText());
+            pst.setString(4, (String) txtProgress.getSelectedItem());
             pst.setString(5, txtNotes.getText());
 
             java.util.Date selectedDate = jCalendar1.getDate();
@@ -317,7 +320,7 @@ public class HabbitTracker extends javax.swing.JFrame {
         txtHabbit.setText(model.getValueAt(selectedIndex, 0).toString());
         txtFrequency.setText(model.getValueAt(selectedIndex, 1).toString());
         txtGoal.setText(model.getValueAt(selectedIndex, 2).toString());
-        txtProgress.setText(model.getValueAt(selectedIndex, 3).toString());
+        txtProgress.setSelectedItem(model.getValueAt(selectedIndex, 3).toString());
         txtNotes.setText(model.getValueAt(selectedIndex, 4).toString());
 
         try {
@@ -336,7 +339,7 @@ public class HabbitTracker extends javax.swing.JFrame {
             pst.setString(1, txtHabbit.getText());
             pst.setString(2, txtFrequency.getText());
             pst.setString(3, txtGoal.getText());
-            pst.setString(4, txtProgress.getText());
+            pst.setString(4, (String) txtProgress.getSelectedItem());
             pst.setString(5, txtNotes.getText());
 
             java.util.Date selectedDate = jCalendar1.getDate();
@@ -417,6 +420,7 @@ public class HabbitTracker extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JTextField ggg;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -433,7 +437,7 @@ public class HabbitTracker extends javax.swing.JFrame {
     private javax.swing.JTextField txtGoal;
     private javax.swing.JTextField txtHabbit;
     private javax.swing.JTextField txtNotes;
-    private javax.swing.JTextField txtProgress;
+    private javax.swing.JComboBox<String> txtProgress;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
 }
