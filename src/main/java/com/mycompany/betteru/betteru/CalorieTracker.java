@@ -82,7 +82,6 @@ public class CalorieTracker extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         btnAddData = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
-        btnClearData = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -124,13 +123,6 @@ public class CalorieTracker extends javax.swing.JFrame {
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrintActionPerformed(evt);
-            }
-        });
-
-        btnClearData.setText("Clear Data");
-        btnClearData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearDataActionPerformed(evt);
             }
         });
 
@@ -238,9 +230,7 @@ public class CalorieTracker extends javax.swing.JFrame {
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(userLabel)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnClearData)
-                .addGap(246, 246, 246))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,17 +241,11 @@ public class CalorieTracker extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(userLabel)
-                                    .addComponent(jLabel7))
-                                .addGap(64, 64, 64))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnClearData)
-                                .addGap(42, 42, 42)))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(userLabel)
+                            .addComponent(jLabel7))
+                        .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -301,14 +285,6 @@ public class CalorieTracker extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private JFrame frame;
-    private void btnClearDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearDataActionPerformed
-        //txtID.setText(null);
-        txtMeal.setText(null);
-        txtFood.setText(null);
-        txtCalories.setText(null);
-
-    }//GEN-LAST:event_btnClearDataActionPerformed
-
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
         MessageFormat header = new MessageFormat("Printing in progress");
         MessageFormat footer = new MessageFormat("Page {0, number, integer}");
@@ -452,7 +428,6 @@ public class CalorieTracker extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddData;
-    private javax.swing.JButton btnClearData;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnPrint;
     private javax.swing.JButton btnUpdate;
