@@ -25,7 +25,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     public MainMenu(String User) {
         initComponents();
-        jButton3.setVisible(false);
+       // jButton3.setVisible(false);
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
         Image image = icon.getImage().getScaledInstance(icon.getIconWidth() * 4, icon.getIconHeight() * 4, Image.SCALE_DEFAULT);
         this.setIconImage(image);
@@ -107,6 +107,11 @@ public class MainMenu extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Stats.png"))); // NOI18N
         jButton2.setText("Stats & Suggestions");
         jButton2.setFocusPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Logged in User:");
 
@@ -276,6 +281,14 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+                java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new StatsStatistics(LoggedInUser).setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
