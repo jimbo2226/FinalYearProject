@@ -150,14 +150,14 @@ public class Registration extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        char[] password1 = txtPassRegister.getPassword(); // Get the content of the first password field
-        char[] password2 = txtPassRegister2.getPassword(); // Get the content of the second password field
+        char[] password1 = txtPassRegister.getPassword(); 
+        char[] password2 = txtPassRegister2.getPassword(); 
 
-// Convert char arrays to strings
+
         String passwordStr1 = new String(password1);
         String passwordStr2 = new String(password2);
 
-// Compare the passwords and perform actions accordingly
+
         if (passwordStr1.equals(passwordStr2)) {
             try {
                 String sql = "INSERT INTO Accounts VALUES(?,?);";
