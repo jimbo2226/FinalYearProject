@@ -60,7 +60,7 @@ public class StatsStatistics extends javax.swing.JFrame {
         jLabel5.setText(LoggedInUser);
         updateLblCalorieBMI();
         updateLblCalorieTrackerCalorieCalculator();
-        trail();
+        trail(); 
         updateLblGeneratedQuotes();
         updateLblGeneratedReminders();
         ReccomendedCaloriesLabel();
@@ -415,15 +415,18 @@ public class StatsStatistics extends javax.swing.JFrame {
     public void updateLblCalorieBMI() {
         con = com.mycompany.betteru.betteru.DbConnection.ConnectionDB();
         if (con != null) {
-            String sqlB = "Select id, BMI, User from CalculatorBMI WHERE User = '" + LoggedInUser + "' ORDER BY id DESC LIMIT 1 ";
+            String sqlB = "SELECT id, BMI, User FROM CalculatorBMI WHERE User = '" + LoggedInUser + "' ORDER BY id DESC LIMIT 1";
             System.out.println(sqlB);
             double BMIData = 0;
+            boolean bmiDataAvailable = false;
+
             try {
                 pst = con.prepareStatement(sqlB);
                 rs = pst.executeQuery();
 
                 while (rs.next()) {
                     BMIData = rs.getDouble("BMI");
+                    bmiDataAvailable = true;
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
@@ -444,9 +447,11 @@ public class StatsStatistics extends javax.swing.JFrame {
                 }
             }
 
-            String sqlC = "SELECT Calories FROM CalorieTrack WHERE User = '" + LoggedInUser + "'  AND Date = (SELECT Date FROM CalorieTrack WHERE User = '" + LoggedInUser + "' ORDER BY Date DESC LIMIT 1 );";
+            String sqlC = "SELECT Calories FROM CalorieTrack WHERE User = '" + LoggedInUser + "' AND Date = (SELECT Date FROM CalorieTrack WHERE User = '" + LoggedInUser + "' ORDER BY Date DESC LIMIT 1)";
             System.out.println(sqlC);
             int Total = 0;
+            boolean calorieDataAvailable = false;
+
             try {
                 pst = con.prepareStatement(sqlC);
                 rs = pst.executeQuery();
@@ -454,6 +459,7 @@ public class StatsStatistics extends javax.swing.JFrame {
                 while (rs.next()) {
                     int CalorieData = rs.getInt("Calories");
                     Total = Total + CalorieData;
+                    calorieDataAvailable = true;
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
@@ -474,12 +480,20 @@ public class StatsStatistics extends javax.swing.JFrame {
                 }
             }
 
-            if (Total > 2500 && BMIData > 25) {
-                lbCalorieBMIlSuggestion.setText("You are eating too many calories with a high BMI (25 - Overweight) ");
-            } else if (Total < 1500 && BMIData < 18.5) {
-                lbCalorieBMIlSuggestion.setText("You need to consume more Calories your BMI is under 18.5(UnderWeight) ");
+            if (!calorieDataAvailable && !bmiDataAvailable) {
+                lbCalorieBMIlSuggestion.setText("No data available for calories and BMI.");
+            } else if (!calorieDataAvailable) {
+                lbCalorieBMIlSuggestion.setText("No data available for calories.");
+            } else if (!bmiDataAvailable) {
+                lbCalorieBMIlSuggestion.setText("No data available for BMI.");
             } else {
-                lbCalorieBMIlSuggestion.setText("No Suggestions! Keep going your doing great");
+                if (Total > 2500 && BMIData > 25) {
+                    lbCalorieBMIlSuggestion.setText("You are eating too many calories with a high BMI (25 - Overweight).");
+                } else if (Total < 1500 && BMIData < 18.5) {
+                    lbCalorieBMIlSuggestion.setText("You need to consume more calories; your BMI is under 18.5 (Underweight).");
+                } else {
+                    lbCalorieBMIlSuggestion.setText("No suggestions! Keep going, you're doing great.");
+                }
             }
         }
     }
@@ -794,7 +808,6 @@ public class StatsStatistics extends javax.swing.JFrame {
                     averageCalories = rs.getDouble("AverageCalories");
                 }
 
-                
                 lblAverageCaloriesPerDay.setText("Average Calories Consumed per Day for " + LoggedInUser + ": " + averageCalories);
             }
         } catch (Exception e) {
