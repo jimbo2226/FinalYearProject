@@ -88,7 +88,7 @@ public class Registration extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Re-Type Password");
+        jLabel4.setText("Re-Type Password:");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BetterU.png"))); // NOI18N
 
@@ -97,34 +97,24 @@ public class Registration extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtPassRegister2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtPassRegister)
-                                        .addComponent(txtUserRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel5)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(btnRegister)))
+                .addGap(82, 82, 82)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnRegister)
+                    .addComponent(jLabel3)
+                    .addComponent(txtPassRegister)
+                    .addComponent(txtUserRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtPassRegister2))
                 .addContainerGap(155, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addGap(25, 25, 25)
@@ -133,44 +123,45 @@ public class Registration extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtUserRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPassRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(txtPassRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPassRegister2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addComponent(btnRegister)
-                .addGap(23, 23, 23))
+                .addGap(34, 34, 34))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        char[] password1 = txtPassRegister.getPassword(); 
-        char[] password2 = txtPassRegister2.getPassword(); 
-
-
+        char[] password1 = txtPassRegister.getPassword();
+        char[] password2 = txtPassRegister2.getPassword();
         String passwordStr1 = new String(password1);
         String passwordStr2 = new String(password2);
+        String username = txtUserRegister.getText().trim();
 
-
-        if (passwordStr1.equals(passwordStr2)) {
+        if (username.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter a username.");
+        } else if (passwordStr1.isEmpty() || passwordStr2.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter a password in both fields.");
+        } else if (passwordStr1.equals(passwordStr2)) {
             try {
-                String sql = "INSERT INTO Accounts VALUES(?,?);";
+                String sql = "INSERT INTO Accounts VALUES (?, ?);";
                 pst = con.prepareStatement(sql);
-                pst.setString(1, txtUserRegister.getText());
+                pst.setString(1, username);
                 pst.setString(2, txtPassRegister.getText());
                 pst.execute();
-                // System.out.println("You have bee  registered successfully");
-                JOptionPane.showMessageDialog(null, "Your account has been Registered. Log in to continue.");
+                JOptionPane.showMessageDialog(null, "Your account has been registered. Log in to continue.");
             } catch (Exception e) {
-                System.out.println("Registration Failed" + e);
+                System.out.println("Registration Failed: " + e);
+                JOptionPane.showMessageDialog(null, "Registration Failed: Username already taken!");
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "Passwords do not match! Please try again...");
         }
