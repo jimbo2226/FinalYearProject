@@ -60,7 +60,7 @@ public class StatsStatistics extends javax.swing.JFrame {
         jLabel5.setText(LoggedInUser);
         updateLblCalorieBMI();
         updateLblCalorieTrackerCalorieCalculator();
-        trail(); 
+        trail();
         updateLblGeneratedQuotes();
         updateLblGeneratedReminders();
         ReccomendedCaloriesLabel();
@@ -790,52 +790,52 @@ public class StatsStatistics extends javax.swing.JFrame {
         }
     }
 
-    public void updateLblAverageCaloriesPerDay() {
-        String sqlAverageCalories = "SELECT AVG(Calories) AS AverageCalories FROM CalorieTrack WHERE User = ?";
-        System.out.println(sqlAverageCalories);
-        double averageCalories = 0.0;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        Connection con = null;
-        try {
-            con = com.mycompany.betteru.betteru.DbConnection.ConnectionDB();
-            if (con != null) {
-                pst = con.prepareStatement(sqlAverageCalories);
-                pst.setString(1, LoggedInUser);
-                rs = pst.executeQuery();
+ public void updateLblAverageCaloriesPerDay() {
+    String sqlAverageCalories = "SELECT AVG(DailyCalories) AS AverageCaloriesPerDay FROM (SELECT SUM(Calories) / COUNT(DISTINCT Date) AS DailyCalories FROM CalorieTrack WHERE User = ? GROUP BY Date) AS DailyCalorieSum";
+    System.out.println(sqlAverageCalories);
+    double averageCaloriesPerDay = 0.0;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    Connection con = null;
+    try {
+        con = com.mycompany.betteru.betteru.DbConnection.ConnectionDB();
+        if (con != null) {
+            pst = con.prepareStatement(sqlAverageCalories);
+            pst.setString(1, LoggedInUser);
+            rs = pst.executeQuery();
 
-                if (rs.next()) {
-                    averageCalories = rs.getDouble("AverageCalories");
-                }
+            if (rs.next()) {
+                averageCaloriesPerDay = rs.getDouble("AverageCaloriesPerDay");
+            }
 
-                lblAverageCaloriesPerDay.setText("Average Calories Consumed per Day for " + LoggedInUser + ": " + averageCalories);
+            lblAverageCaloriesPerDay.setText("Average Calories Consumed per Day for " + LoggedInUser + ": " + averageCaloriesPerDay);
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e);
+    } finally {
+        if (rs != null) {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+        }
+        if (pst != null) {
+            try {
+                pst.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-            if (pst != null) {
-                try {
-                    pst.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+        }
+        if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
+}
 
     public void graphCalories() {
         String sqlCalorieData = "SELECT Date, SUM(Calories) AS TotalCalories FROM CalorieTrack WHERE User = ? GROUP BY Date";
