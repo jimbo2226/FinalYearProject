@@ -25,6 +25,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        setResizable(false);
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
         Image image = icon.getImage().getScaledInstance(icon.getIconWidth() * 4, icon.getIconHeight() * 4, Image.SCALE_DEFAULT);
         this.setIconImage(image);
@@ -149,10 +150,18 @@ public class Login extends javax.swing.JFrame {
         String sql = "SELECT * from Accounts WHERE User LIKE ? AND Pass LIKE ?";
         try {
             String User = txtUser.getText().trim();
+            String pass = txtPass.getText();
+
+            if (User.isEmpty() || pass.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Username or password cannot be blank!");
+                return; 
+            }
+
             pst = con.prepareStatement(sql);
             pst.setString(1, User);
-            pst.setString(2, txtPass.getText());
+            pst.setString(2, pass);
             rs = pst.executeQuery();
+
             if (rs.next()) {
                 JOptionPane.showMessageDialog(null, "Login Successful!");
                 java.awt.EventQueue.invokeLater(new Runnable() {
@@ -166,7 +175,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No joy bratha! Try again...");
             }
         } catch (Exception e) {
-
+            
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 

@@ -32,6 +32,7 @@ public class CalculatorBMI extends javax.swing.JFrame {
 
     public CalculatorBMI(String User) {
         initComponents();
+        setResizable(false);
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/icon.png"));
         Image image = icon.getImage().getScaledInstance(icon.getIconWidth() * 4, icon.getIconHeight() * 4, Image.SCALE_DEFAULT);
         this.setIconImage(image);
