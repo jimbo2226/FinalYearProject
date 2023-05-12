@@ -175,11 +175,10 @@ public class PasswordChange extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Passwords do not match. Please try again.");
             return;
         }
-
         Connection con = null;
         PreparedStatement verifyPst = null;
         PreparedStatement pst = null;
-
+        
         try {
             con = com.mycompany.betteru.betteru.DbConnection.ConnectionDB();
 
