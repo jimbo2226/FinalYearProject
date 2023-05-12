@@ -319,7 +319,6 @@ public class CalorieTracker extends javax.swing.JFrame {
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int selectedIndex = jTable1.getSelectedRow();
-        //System.out.println();
 
         txtMeal.setText(model.getValueAt(selectedIndex, 0).toString());
         txtFood.setText(model.getValueAt(selectedIndex, 1).toString());
@@ -332,7 +331,7 @@ public class CalorieTracker extends javax.swing.JFrame {
             Logger.getLogger(CalorieTracker.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        //txtDate.setText(model.getValueAt(selectedIndex, 3).toString());
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void txtCaloriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCaloriesActionPerformed
