@@ -61,7 +61,6 @@ public class StatsStatistics extends javax.swing.JFrame {
         jLabel5.setText(LoggedInUser);
         updateLblCalorieBMI();
         updateLblCalorieTrackerCalorieCalculator();
-        trail();
         updateLblGeneratedQuotes();
         updateLblGeneratedReminders();
         ReccomendedCaloriesLabel();
@@ -87,10 +86,6 @@ public class StatsStatistics extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         lblGeneratedQuotes = new javax.swing.JLabel();
         lblGeneratedReminders = new javax.swing.JLabel();
@@ -142,14 +137,6 @@ public class StatsStatistics extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("jLabel5");
-
-        jLabel18.setText("jLabel6");
-
-        jLabel19.setText("jLabel7");
-
-        jLabel20.setText("jLabel8");
-
-        jLabel21.setText("jLabel9");
 
         lblGeneratedQuotes.setText("Quote");
 
@@ -250,13 +237,7 @@ public class StatsStatistics extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19)
-                            .addComponent(jLabel18)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel21))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 777, Short.MAX_VALUE)
                         .addComponent(btnMainMenu))
                     .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -279,19 +260,13 @@ public class StatsStatistics extends javax.swing.JFrame {
                                     .addComponent(jLabel1)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(9, 9, 9)
-                                        .addComponent(jLabel8)))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel8))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(325, 325, 325)
                                 .addComponent(jLabel7))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(313, 313, 313)
-                                .addComponent(jLabel25)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel25))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(319, 319, 319)
                                 .addComponent(jLabel2))
@@ -373,17 +348,8 @@ public class StatsStatistics extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(generateBMIBarChart)
                     .addComponent(generateBMIGraph))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnMainMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel21)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -571,55 +537,6 @@ public class StatsStatistics extends javax.swing.JFrame {
                 lblCalorieGoalToday.setText("You have consumed fewer calories than recommended.");
             }
         }
-    }
-
-    public void trail() {
-        String sqlWorkoutStatistics = "SELECT MIN(strftime('%H:%M:%S', Duration)) AS MinDuration, MAX(strftime('%H:%M:%S', Duration)) AS MaxDuration, AVG(strftime('%H:%M:%S', Duration)) AS AverageDuration FROM WorkoutTracker WHERE User = ?";
-        System.out.println(sqlWorkoutStatistics);
-        String minDuration = null;
-        String maxDuration = null;
-        String averageDuration = null;
-        try {
-            con = com.mycompany.betteru.betteru.DbConnection.ConnectionDB();
-            pst = con.prepareStatement(sqlWorkoutStatistics);
-            pst.setString(1, LoggedInUser);
-            rs = pst.executeQuery();
-
-            if (rs.next()) {
-                minDuration = rs.getString("MinDuration");
-                maxDuration = rs.getString("MaxDuration");
-                averageDuration = rs.getString("AverageDuration");
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (pst != null) {
-                try {
-                    pst.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        jLabel18.setText("Workout Duration Statistics for " + LoggedInUser + ":");
-        jLabel19.setText("Minimum Duration: " + minDuration);
-        jLabel20.setText("Maximum Duration: " + maxDuration);
-        jLabel21.setText("Average Duration: " + averageDuration);
     }
 
     public void updateLblGeneratedQuotes() {
@@ -1145,11 +1062,7 @@ public class StatsStatistics extends javax.swing.JFrame {
     private javax.swing.JButton generateCalorieConsumptionBarChart;
     private javax.swing.JButton generateCalorieConsumptionGraph;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;

@@ -36,19 +36,19 @@
               <EmptySpace pref="209" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="1" groupAlignment="1" attributes="0">
-                      <Component id="openReminder" alignment="1" min="-2" pref="235" max="-2" attributes="0"/>
-                      <Component id="openRandomQuote" alignment="1" min="-2" pref="235" max="-2" attributes="0"/>
-                      <Component id="openCalorieCalculator" alignment="1" min="-2" pref="235" max="-2" attributes="0"/>
-                      <Component id="openCalorieTracker" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
-                      <Component id="openBmiCalculator" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
+                      <Component id="btnOpenReminder" alignment="1" min="-2" pref="235" max="-2" attributes="0"/>
+                      <Component id="btnOpenRandomQuote" alignment="1" min="-2" pref="235" max="-2" attributes="0"/>
+                      <Component id="btnOpenCalorieCalculator" alignment="1" min="-2" pref="235" max="-2" attributes="0"/>
+                      <Component id="btnOpenCalorieTracker" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
+                      <Component id="btnOpenBmiCalculator" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
+                      <Component id="btnOpenHabbitTracker" alignment="0" min="-2" pref="235" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jButton2" alignment="1" min="-2" pref="235" max="-2" attributes="0"/>
+                  <Component id="btnOpenStatsStatisics" alignment="1" min="-2" pref="235" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="logoutButton" max="32767" attributes="0"/>
-                  <Component id="btnChangePassword" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnLogout" max="32767" attributes="0"/>
+                  <Component id="btnOpenChangePassword" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -60,9 +60,9 @@
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="btnChangePassword" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="btnOpenChangePassword" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="logoutButton" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="btnLogout" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -73,19 +73,19 @@
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="openBmiCalculator" min="-2" pref="56" max="-2" attributes="0"/>
+                      <Component id="btnOpenBmiCalculator" min="-2" pref="56" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="openCalorieTracker" min="-2" pref="54" max="-2" attributes="0"/>
+                      <Component id="btnOpenCalorieTracker" min="-2" pref="54" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="56" max="-2" attributes="0"/>
+                      <Component id="btnOpenHabbitTracker" min="-2" pref="56" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="openCalorieCalculator" min="-2" pref="56" max="-2" attributes="0"/>
+                      <Component id="btnOpenCalorieCalculator" min="-2" pref="56" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="openReminder" min="-2" pref="56" max="-2" attributes="0"/>
+                      <Component id="btnOpenReminder" min="-2" pref="56" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="openRandomQuote" min="-2" pref="54" max="-2" attributes="0"/>
+                      <Component id="btnOpenRandomQuote" min="-2" pref="54" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="56" max="-2" attributes="0"/>
+                      <Component id="btnOpenStatsStatisics" min="-2" pref="56" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="31" max="32767" attributes="0"/>
@@ -94,7 +94,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="openCalorieCalculator">
+    <Component class="javax.swing.JButton" name="btnOpenCalorieCalculator">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Calorie_Calculator.png"/>
@@ -103,10 +103,10 @@
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openCalorieCalculatorActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpenCalorieCalculatorActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="openCalorieTracker">
+    <Component class="javax.swing.JButton" name="btnOpenCalorieTracker">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Calorie_Tracker.png"/>
@@ -115,10 +115,10 @@
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openCalorieTrackerActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpenCalorieTrackerActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="openRandomQuote">
+    <Component class="javax.swing.JButton" name="btnOpenRandomQuote">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Quote.png"/>
@@ -127,10 +127,10 @@
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openRandomQuoteActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpenRandomQuoteActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="openReminder">
+    <Component class="javax.swing.JButton" name="btnOpenReminder">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Reminder.png"/>
@@ -139,10 +139,10 @@
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openReminderActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpenReminderActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnOpenHabbitTracker">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Habbit_Tracker.png"/>
@@ -151,10 +151,10 @@
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpenHabbitTrackerActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnOpenStatsStatisics">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Stats.png"/>
@@ -163,7 +163,7 @@
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpenStatsStatisicsActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -176,7 +176,7 @@
         <Property name="text" type="java.lang.String" value="jLabel3"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="logoutButton">
+    <Component class="javax.swing.JButton" name="btnLogout">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Log_Out40.png"/>
@@ -184,10 +184,10 @@
         <Property name="text" type="java.lang.String" value="Log Out"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogoutActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="openBmiCalculator">
+    <Component class="javax.swing.JButton" name="btnOpenBmiCalculator">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/BMI_Calculator.png"/>
@@ -196,7 +196,7 @@
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openBmiCalculatorActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpenBmiCalculatorActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -206,7 +206,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnChangePassword">
+    <Component class="javax.swing.JButton" name="btnOpenChangePassword">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Settings35.png"/>
@@ -214,7 +214,7 @@
         <Property name="text" type="java.lang.String" value="Change Password"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnChangePasswordActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpenChangePasswordActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
