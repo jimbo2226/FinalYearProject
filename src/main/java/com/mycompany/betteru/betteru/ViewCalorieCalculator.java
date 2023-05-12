@@ -69,7 +69,7 @@ public class ViewCalorieCalculator extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Age", "Weight", "Height", "Gender", "ActivityLevel", "Result", "Title 7"
+                "Age", "Weight", "Height", "Gender", "ActivityLevel", "Result", "Date"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

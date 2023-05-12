@@ -95,7 +95,7 @@
                 <Column editable="true" title="Gender" type="java.lang.Object"/>
                 <Column editable="true" title="ActivityLevel" type="java.lang.Object"/>
                 <Column editable="true" title="Result" type="java.lang.Object"/>
-                <Column editable="true" title="Title 7" type="java.lang.Object"/>
+                <Column editable="true" title="Date" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>

@@ -18,7 +18,9 @@ import javax.swing.JOptionPane;
  * @author James
  */
 public class PasswordChange extends javax.swing.JFrame {
-String LoggedInUser = null;
+
+    String LoggedInUser = null;
+
     /**
      * Creates new form PasswordChange
      */
@@ -99,9 +101,6 @@ String LoggedInUser = null;
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(242, 242, 242)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(178, 178, 178)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel1)
@@ -126,6 +125,10 @@ String LoggedInUser = null;
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnPasswordChange)
                 .addGap(235, 235, 235))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(243, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(245, 245, 245))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,9 +137,9 @@ String LoggedInUser = null;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(userLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(7, 7, 7)
                 .addComponent(jLabel4)
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCurrentPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -160,85 +163,85 @@ String LoggedInUser = null;
 
     private void btnPasswordChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPasswordChangeActionPerformed
         String currentPassword = txtCurrentPassword.getText();
-String newPassword = txtNewPassword.getText();
-String confirmPassword = txtConfirmPassword.getText();
+        String newPassword = txtNewPassword.getText();
+        String confirmPassword = txtConfirmPassword.getText();
 
-if (currentPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
-    JOptionPane.showMessageDialog(this, "Please enter your current password and new password, and confirm the new password.");
-    return;
-}
-
-if (!newPassword.equals(confirmPassword)) {
-    JOptionPane.showMessageDialog(this, "Passwords do not match. Please try again.");
-    return;
-}
-
-Connection con = null;
-PreparedStatement verifyPst = null;
-PreparedStatement pst = null;
-
-try {
-    con = com.mycompany.betteru.betteru.DbConnection.ConnectionDB(); 
-
-    String verifySql = "SELECT Pass FROM Accounts WHERE User = ?";
-    verifyPst = con.prepareStatement(verifySql);
-    verifyPst.setString(1, LoggedInUser);
-    ResultSet verifyRs = verifyPst.executeQuery();
-    if (verifyRs.next()) {
-        String storedPassword = verifyRs.getString("Pass");
-        
-        if (!storedPassword.equals(currentPassword)) {
-            JOptionPane.showMessageDialog(this, "Current password is incorrect. Please try again.");
+        if (currentPassword.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter your current password and new password, and confirm the new password.");
             return;
         }
-    } else {
-        JOptionPane.showMessageDialog(this, "User not found. Please try again.");
-        return;
-    }
-} catch (SQLException e) {
-    JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage());
-    return;
-} finally {
-   
-    if (verifyPst != null) {
-        try {
-            verifyPst.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-}
 
-try {
-    String sql = "UPDATE Accounts SET Pass = ? WHERE User = ?";
-    pst = con.prepareStatement(sql);
-    pst.setString(1, newPassword);
-    pst.setString(2, LoggedInUser);
-    int rowsAffected = pst.executeUpdate();
-    if (rowsAffected > 0) {
-        JOptionPane.showMessageDialog(this, "Password changed successfully.");
-    } else {
-        JOptionPane.showMessageDialog(this, "Failed to change password. Please try again.");
-    }
-} catch (SQLException e) {
-    JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage());
-} finally {
-    
-    if (pst != null) {
-        try {
-            pst.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (!newPassword.equals(confirmPassword)) {
+            JOptionPane.showMessageDialog(this, "Passwords do not match. Please try again.");
+            return;
         }
-    }
-    if (con != null) {
+
+        Connection con = null;
+        PreparedStatement verifyPst = null;
+        PreparedStatement pst = null;
+
         try {
-            con.close();
+            con = com.mycompany.betteru.betteru.DbConnection.ConnectionDB();
+
+            String verifySql = "SELECT Pass FROM Accounts WHERE User = ?";
+            verifyPst = con.prepareStatement(verifySql);
+            verifyPst.setString(1, LoggedInUser);
+            ResultSet verifyRs = verifyPst.executeQuery();
+            if (verifyRs.next()) {
+                String storedPassword = verifyRs.getString("Pass");
+
+                if (!storedPassword.equals(currentPassword)) {
+                    JOptionPane.showMessageDialog(this, "Current password is incorrect. Please try again.");
+                    return;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "User not found. Please try again.");
+                return;
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage());
+            return;
+        } finally {
+
+            if (verifyPst != null) {
+                try {
+                    verifyPst.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-    }
-}
+
+        try {
+            String sql = "UPDATE Accounts SET Pass = ? WHERE User = ?";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, newPassword);
+            pst.setString(2, LoggedInUser);
+            int rowsAffected = pst.executeUpdate();
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(this, "Password changed successfully.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed to change password. Please try again.");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "An error occurred: " + e.getMessage());
+        } finally {
+
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }//GEN-LAST:event_btnPasswordChangeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -248,7 +251,6 @@ try {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPasswordChange;

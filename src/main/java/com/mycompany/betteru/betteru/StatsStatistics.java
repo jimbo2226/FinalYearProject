@@ -209,29 +209,6 @@ public class StatsStatistics extends javax.swing.JFrame {
             .addComponent(jSeparator7)
             .addComponent(jSeparator8, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jSeparator6)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblGeneratedReminders))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(340, 340, 340)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(336, 336, 336)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel24))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblAverageCaloriesPerDay))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(310, 310, 310)
-                        .addComponent(jLabel3)))
-                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jSeparator2)
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
@@ -240,29 +217,6 @@ public class StatsStatistics extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnMainMenu))
                     .addComponent(jSeparator5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbCalorieBMIlSuggestion)
-                    .addComponent(lblCalorieGoalToday)
-                    .addComponent(lblGeneratedQuotes)
-                    .addComponent(lblRecentCalorieRecommendation)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(307, 307, 307)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(jLabel8))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(325, 325, 325)
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(313, 313, 313)
-                        .addComponent(jLabel25))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(319, 319, 319)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(417, 417, 417)
-                        .addComponent(jLabel9))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(169, 169, 169)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -272,8 +226,51 @@ public class StatsStatistics extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(generateCalorieConsumptionBarChart, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                             .addComponent(generateBMIBarChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(185, 185, 185)))
+                        .addGap(185, 185, 185))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbCalorieBMIlSuggestion)
+                            .addComponent(lblCalorieGoalToday)
+                            .addComponent(lblGeneratedQuotes)
+                            .addComponent(lblRecentCalorieRecommendation)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(307, 307, 307)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(9, 9, 9)
+                                        .addComponent(jLabel8))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(325, 325, 325)
+                                .addComponent(jLabel7))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(313, 313, 313)
+                                .addComponent(jLabel25))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(319, 319, 319)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(417, 417, 417)
+                                .addComponent(jLabel9))
+                            .addComponent(lblGeneratedReminders))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(340, 340, 340)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(336, 336, 336)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(310, 310, 310)
+                        .addComponent(jLabel3))
+                    .addComponent(jLabel24)
+                    .addComponent(lblAverageCaloriesPerDay))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -696,52 +693,52 @@ public class StatsStatistics extends javax.swing.JFrame {
         }
     }
 
- public void updateLblAverageCaloriesPerDay() {
-    String sqlAverageCalories = "SELECT AVG(DailyCalories) AS AverageCaloriesPerDay FROM (SELECT SUM(Calories) / COUNT(DISTINCT Date) AS DailyCalories FROM CalorieTrack WHERE User = ? GROUP BY Date) AS DailyCalorieSum";
-    System.out.println(sqlAverageCalories);
-    double averageCaloriesPerDay = 0.0;
-    PreparedStatement pst = null;
-    ResultSet rs = null;
-    Connection con = null;
-    try {
-        con = com.mycompany.betteru.betteru.DbConnection.ConnectionDB();
-        if (con != null) {
-            pst = con.prepareStatement(sqlAverageCalories);
-            pst.setString(1, LoggedInUser);
-            rs = pst.executeQuery();
+    public void updateLblAverageCaloriesPerDay() {
+        String sqlAverageCalories = "SELECT AVG(DailyCalories) AS AverageCaloriesPerDay FROM (SELECT SUM(Calories) / COUNT(DISTINCT Date) AS DailyCalories FROM CalorieTrack WHERE User = ? GROUP BY Date) AS DailyCalorieSum";
+        System.out.println(sqlAverageCalories);
+        double averageCaloriesPerDay = 0.0;
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        Connection con = null;
+        try {
+            con = com.mycompany.betteru.betteru.DbConnection.ConnectionDB();
+            if (con != null) {
+                pst = con.prepareStatement(sqlAverageCalories);
+                pst.setString(1, LoggedInUser);
+                rs = pst.executeQuery();
 
-            if (rs.next()) {
-                averageCaloriesPerDay = rs.getDouble("AverageCaloriesPerDay");
-            }
+                if (rs.next()) {
+                    averageCaloriesPerDay = rs.getDouble("AverageCaloriesPerDay");
+                }
 
-            lblAverageCaloriesPerDay.setText("Average Calories Consumed per Day for " + LoggedInUser + ": " + averageCaloriesPerDay);
-        }
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, e);
-    } finally {
-        if (rs != null) {
-            try {
-                rs.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+                lblAverageCaloriesPerDay.setText("Average Calories Consumed per Day for " + LoggedInUser + ": " + averageCaloriesPerDay);
             }
-        }
-        if (pst != null) {
-            try {
-                pst.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        if (con != null) {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
-}
 
     public void graphCalories() {
         String sqlCalorieData = "SELECT Date, SUM(Calories) AS TotalCalories FROM CalorieTrack WHERE User = ? GROUP BY Date";

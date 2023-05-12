@@ -117,10 +117,10 @@ public class Login extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addComponent(txtPass)))
                 .addContainerGap(69, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(140, 140, 140)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(140, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(143, 143, 143))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,7 +154,7 @@ public class Login extends javax.swing.JFrame {
 
             if (User.isEmpty() || pass.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Username or password cannot be blank!");
-                return; 
+                return;
             }
 
             pst = con.prepareStatement(sql);
@@ -175,7 +175,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No joy bratha! Try again...");
             }
         } catch (Exception e) {
-            
+
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
