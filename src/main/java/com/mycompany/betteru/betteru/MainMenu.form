@@ -147,7 +147,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Habbit_Tracker.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Habbit Tracker"/>
+        <Property name="text" type="java.lang.String" value="Habit Tracker"/>
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>

@@ -97,7 +97,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
 
         btnOpenHabbitTracker.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Habbit_Tracker.png"))); // NOI18N
-        btnOpenHabbitTracker.setText("Habbit Tracker");
+        btnOpenHabbitTracker.setText("Habit Tracker");
         btnOpenHabbitTracker.setFocusPainted(false);
         btnOpenHabbitTracker.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -151,7 +151,7 @@ public class HabbitTracker extends javax.swing.JFrame {
         });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("Habbit Tracker");
+        jLabel8.setText("Habit Tracker");
 
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Update.png"))); // NOI18N
         btnUpdate.setText("Update");
@@ -221,7 +221,7 @@ public class HabbitTracker extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(504, 504, 504)
+                .addGap(510, 510, 510)
                 .addComponent(jLabel8)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -232,9 +232,9 @@ public class HabbitTracker extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(userLabel))
-                .addGap(14, 14, 14)
+                .addGap(3, 3, 3)
                 .addComponent(jLabel8)
-                .addGap(85, 85, 85)
+                .addGap(96, 96, 96)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
