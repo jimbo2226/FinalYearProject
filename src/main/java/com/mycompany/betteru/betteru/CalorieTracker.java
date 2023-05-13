@@ -151,7 +151,7 @@ public class CalorieTracker extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Calorie Counter");
+        jLabel1.setText("Calorie Tracker");
 
         mainMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main_Menu35.png"))); // NOI18N
         mainMenuButton.setText("Main Menu");
